@@ -141,17 +141,20 @@
   background: grey;
 }
 .landscape-ground[stage='2'][color='red'] {
-  background: #A97666;
-  background: linear-gradient(#935440 0%, #9E6553 30%, #A97666 100%); */
+  background: #7f5d5d;
+  background: linear-gradient(#654a4a 0%, #725353 30%, #7f5d5d 100%); */
 }
 .landscape-ground[stage='2'][color='green'] {
-  background: linear-gradient(#24345d 0%, #334a82 60%, #3a5394 100%);
+  background: #5b7c65;
+  background: linear-gradient(#486350 0%, #516f5a 30%, #5b7c65 100%);
 }
 .landscape-ground[stage='2'][color='blue'] {
-  background: linear-gradient(#546B72 0%, #708E98 30%, #8BADB8 100%);
+  background: #5f6f81;
+  background: linear-gradient(#4c5867 0%, #556374 30%, #5f6f81 100%);
 }
 .landscape-ground[stage='2'][color='purple'] {
-  background: linear-gradient(#24345d 0%, #334a82 60%, #3a5394 100%);
+  background: #706081;
+  background: linear-gradient(#594c67 0%, #645674 30%, #706081 100%);
 }
 
 /* ---------------------------------- */
@@ -357,7 +360,13 @@
   background: #a75248;
 }
 .rocket-window[color='blue'] {
-  background: #486ea7
+  background: #486ea7;
+}
+.rocket-window[color='green'] {
+  background: #48a782;
+}
+.rocket-window[color='purple'] {
+  background: #955db9;
 }
 .rocket-studs {
   position: absolute;
@@ -401,6 +410,12 @@
 }
 .rocket-fin[color='blue'] {
   background-color: #486ea7;
+}
+.rocket-fin[color='green']{
+  background-color: #48a782;
+}
+.rocket-fin[color='purple'] {
+  background-color: #955db9;
 }
 .rocket-fin[side='left'] {
   left: -40%;

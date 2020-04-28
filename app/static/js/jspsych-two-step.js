@@ -45,6 +45,12 @@ jsPsych.plugins["two-step"] = (function() {
         pretty_name: 'Planet color left',
         description: 'Color of right planet.'
       },
+      outcome_probs: {
+        type: jsPsych.plugins.parameterType.FLOAT,
+        array: true,
+        pretty_name: 'Outcome probability',
+        description: 'Probability of reward for each bandit.'
+      },
       choices: {
         type: jsPsych.plugins.parameterType.KEYCODE,
         array: true,
@@ -101,7 +107,6 @@ jsPsych.plugins["two-step"] = (function() {
 
     // Draw ground.
     new_html += '<div class="landscape-ground" stage="1">';
-    // new_html += '<div class="dirt"></div>';
     new_html += '</div>';
 
     // Draw left rocket.
@@ -130,12 +135,12 @@ jsPsych.plugins["two-step"] = (function() {
 
     // Draw left alien.
     new_html += '<div class="alien" id="alien-L" stage="1" side="left">';
-    new_html += '<img src="../static/img/alien1_norm.png"></img>';
+    new_html += `<img id="alien-L-img"></img>`;
     new_html += '</div>';
 
     // Draw right alien.
     new_html += '<div class="alien" id="alien-R" stage="1" side="right">';
-    new_html += '<img src="../static/img/alien2_norm.png"></img>';
+    new_html += '<img id="alien-R-img"></img>';
     new_html += '</div>';
 
     // Draw diamonds.
@@ -160,6 +165,7 @@ jsPsych.plugins["two-step"] = (function() {
       stage_2_key: null,
       stage_2_rt: null,
       stage_2_choice: null,
+      state_2_outcome: null,
     }
 
     // function to handle responses by the subject
@@ -217,8 +223,12 @@ jsPsych.plugins["two-step"] = (function() {
 
         if ( trial.common_left ) {
           display_element.querySelector('.landscape-ground').setAttribute('color', trial.planet_color_left);
+          display_element.querySelector('#alien-L-img').setAttribute('src', `../static/img/alien01-${trial.planet_color_left}.png`);
+          display_element.querySelector('#alien-R-img').setAttribute('src', `../static/img/alien02-${trial.planet_color_left}.png`);
         } else {
           display_element.querySelector('.landscape-ground').setAttribute('color', trial.planet_color_right);
+          display_element.querySelector('#alien-L-img').setAttribute('src', `../static/img/alien01-${trial.planet_color_right}.png`);
+          display_element.querySelector('#alien-R-img').setAttribute('src', `../static/img/alien02-${trial.planet_color_right}.png`);
         }
 
         display_element.querySelector('#rocket-L').setAttribute('stage', '2');
@@ -229,8 +239,12 @@ jsPsych.plugins["two-step"] = (function() {
 
         if ( trial.common_right ) {
           display_element.querySelector('.landscape-ground').setAttribute('color', trial.planet_color_right);
+          display_element.querySelector('#alien-L-img').setAttribute('src', `../static/img/alien01-${trial.planet_color_right}.png`);
+          display_element.querySelector('#alien-R-img').setAttribute('src', `../static/img/alien02-${trial.planet_color_right}.png`);
         } else {
           display_element.querySelector('.landscape-ground').setAttribute('color', trial.planet_color_left);
+          display_element.querySelector('#alien-L-img').setAttribute('src', `../static/img/alien01-${trial.planet_color_left}.png`);
+          display_element.querySelector('#alien-R-img').setAttribute('src', `../static/img/alien02-${trial.planet_color_left}.png`);
         }
 
         display_element.querySelector('#rocket-R').setAttribute('stage', '2');
@@ -269,13 +283,31 @@ jsPsych.plugins["two-step"] = (function() {
         response.stage_2_choice = 0;
       }
 
+      // Determine outcome.
+      const ix = response.stage_1_choice * 2 + response.stage_2_choice;
+      if ( Math.random() > trial.outcome_probs[ix] ) {
+        response.stage_2_outcome = 1;
+      } else {
+        response.stage_2_outcome = 0;
+      }
+
       // Update screen.
       if ( response.stage_2_choice == 1 ) {
+
         display_element.querySelector('#alien-L').setAttribute('status', 'chosen');
-        display_element.querySelector('#diamond-L').setAttribute('status', 'chosen');
+
+        if ( response.stage_2_outcome == 1 ) {
+          display_element.querySelector('#diamond-L').setAttribute('status', 'chosen');
+        }
+
       } else {
+
         display_element.querySelector('#alien-R').setAttribute('status', 'chosen');
-        display_element.querySelector('#diamond-R').setAttribute('status', 'chosen');
+
+        if ( response.stage_2_outcome == 1 ) {
+          display_element.querySelector('#diamond-R').setAttribute('status', 'chosen');
+        }
+
       }
 
       // Pause for animation (2s).
@@ -308,6 +340,7 @@ jsPsych.plugins["two-step"] = (function() {
         stage_2_key: response.stage_2_key,
         stage_2_rt: response.stage_2_rt,
         stage_2_choice: response.stage_2_choice,
+        stage_2_outcome: response.stage_2_outcome,
       };
 
       // clear the display

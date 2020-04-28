@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Decision Making Experiment</title>
+  <title>Space Trading</title>
 
   <!-- Load libraries -->
   <script src="../static/lib/jquery-3.3.1/jquery.min.js"></script>
   <script src="../static/lib/jspsych-6.1.0/jspsych.js"></script>
+
+  <!-- Load experiment -->
+  <script src="../static/js/two-step-drifts.js" type="text/javascript"></script>
+  <script src="../static/js/two-step-experiment.js" type="text/javascript"></script>
 
   <!-- Load jsPsych plug-ins -->
   <script src="../static/js/jspsych-pass-data.js" type="text/javascript"></script>
@@ -31,24 +35,27 @@
     '../static/img/background-stars.png',
     '../static/img/reward-diamond.png',
     '../static/img/reward-gems.png',
+    '../static/img/alien01-blue.png',
+    '../static/img/alien01-red.png',
+    '../static/img/alien01-green.png',
+    '../static/img/alien01-purple.png',
+    '../static/img/alien02-blue.png',
+    '../static/img/alien02-red.png',
+    '../static/img/alien02-green.png',
+    '../static/img/alien02-purple.png',
+    '../static/img/alien03-blue.png',
+    '../static/img/alien03-red.png',
+    '../static/img/alien03-green.png',
+    '../static/img/alien03-purple.png',
+    '../static/img/alien04-blue.png',
+    '../static/img/alien04-red.png',
+    '../static/img/alien04-green.png',
+    '../static/img/alien04-purple.png'
   ]
-
-  // Define example trial.
-  var rockets = jsPsych.randomization.shuffle(['red','blue']);
-
-  var trial = {
-    type: 'two-step',
-    common_left: jsPsych.randomization.sampleWithoutReplacement([true,false],1)[0],
-    common_right: jsPsych.randomization.sampleWithoutReplacement([true,false],1)[0],
-    rocket_color_left: rockets[0],
-    rocket_color_right: rockets[1],
-    planet_color_left: 'red',
-    planet_color_right: 'blue',
-  };
 
   // Define timeline.
   var timeline = [];
-  timeline = timeline.concat(trial);
+  timeline = timeline.concat(two_step_trials.slice(0,1));
 
   jsPsych.init({
     timeline: timeline,
