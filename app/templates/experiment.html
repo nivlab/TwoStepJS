@@ -9,6 +9,7 @@
 
   <!-- Load experiment -->
   <script src="../static/js/two-step-drifts.js" type="text/javascript"></script>
+  <script src="../static/js/two-step-text.js" type="text/javascript"></script>
   <script src="../static/js/two-step-experiment.js" type="text/javascript"></script>
 
   <!-- Load jsPsych plug-ins -->
@@ -58,7 +59,8 @@
 
 
   // Define example trial.
-  var rockets = jsPsych.randomization.shuffle(['red','blue']);
+  //moved this line to the text file
+  //var rockets = jsPsych.randomization.shuffle(['red','blue']);
 
   // Define timeline, blocks, and number of trials in a block.
   var timeline = [];
@@ -72,46 +74,44 @@
   // ADDING TRIALS TO THE TIMELINE
 
   // Add instructions for the task_version
-  timeline = timeline.concat(
-    {
-      type: 'instructions',
-      pages: instructions, //text from two-step-instructions.js
-      show_clickable_nav: true,
-      show_page_number: false
-    });
+  timeline = timeline.concat(timeline.concat(INSTRUCTIONS));
+
+  // Add trials to the TIMELINE
+  timeline = timeline.concat(TWO_STEP_TRIALS);
 
   // For each block (outer loop), add the appropriate number of trial (inner loop).
   // A block break message is insterted at the end of the blocks, except the last one.
-  for (j = 0; j < num_blocks; j++){
-    for (i = 0; i < block_len; i++){
-      timeline = timeline.concat(
-          {
-            type: 'two-step',
-            common_left: jsPsych.randomization.sampleWithoutReplacement([true,false],1)[0],
-            common_right: jsPsych.randomization.sampleWithoutReplacement([true,false],1)[0],
-            rocket_color_left: rockets[0],
-            rocket_color_right: rockets[1],
-            planet_color_left: 'red',
-            planet_color_right: 'blue',
-          });
-      }//inner for-loop
-
-      // insert block end message, except for the last block
-      if (j < num_blocks-1){
-        timeline = timeline.concat({
-            type: "html-keyboard-response",
-            stimulus: block_end
-          });
-        }
-
-      // for last block add exp_end message
-      else {
-        timeline = timeline.concat({
-          type: "html-keyboard-response",
-          stimulus: exp_end
-        });
-      }
-  }// outer for-loop
+  // for (j = 0; j < num_blocks; j++){
+  //   for (i = 0; i < block_len; i++){
+  //     timeline = timeline.concat(
+  //         {
+  //           // type: 'two-step',
+  //           // common_left: jsPsych.randomization.sampleWithoutReplacement([true,false],1)[0],
+  //           // common_right: jsPsych.randomization.sampleWithoutReplacement([true,false],1)[0],
+  //           // rocket_color_left: rockets[0],
+  //           // rocket_color_right: rockets[1],
+  //           // planet_color_left: 'red',
+  //           // planet_color_right: 'blue',
+  //           // outcome_probs: drifts_01,
+  //         });
+  //     }//inner for-loop
+  //
+  //     // insert block end message, except for the last block
+  //     if (j < num_blocks-1){
+  //       timeline = timeline.concat({
+  //           type: "html-keyboard-response",
+  //           stimulus: block_end
+  //         });
+  //       }
+  //
+  //     // for last block add exp_end message
+  //     else {
+  //       timeline = timeline.concat({
+  //         type: "html-keyboard-response",
+  //         stimulus: exp_end
+  //       });
+  //     }
+  // }// outer for-loop
 
   jsPsych.init({
     timeline: timeline,
