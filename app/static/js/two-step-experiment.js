@@ -31,6 +31,7 @@ for (var i=0; i<20; i++) {
 
 // Iteratively define trials.
 var TWO_STEP_TRIALS = [];
+var TWO_STEP_PRACTICE = [];
 
 for (var i=0; i<200; i++) {
 
@@ -48,7 +49,13 @@ for (var i=0; i<200; i++) {
   };
 
   // Append trial.
-  TWO_STEP_TRIALS.push(trial);
+  if (i<2){
+    TWO_STEP_PRACTICE.push(trial);
+  }
+  else {
+     TWO_STEP_TRIALS.push(trial);
+  }
+  //TWO_STEP_TRIALS.push(trial);
 
 }
 
@@ -160,7 +167,9 @@ var INSTRUCTIONS_09 = {
 };
 
 var ALIEN_PRACTICE = {
-  type: 'temp'
+  type: 'alien-practice',
+  planet_color_left: colors[0],
+  planet_color_right: colors[1]
 };
 
 var INSTRUCTIONS_10 = {
@@ -247,8 +256,24 @@ var INSTRUCTIONS_16 = {
   add_rockets: true,
 };
 
-var ROCKET_PRACTICE = {
-  type: 'temp'
+var ROCKET_PRACTICE_COMMON = {
+  type: 'rocket-practice',
+  common_left: true,
+  common_right: true,
+  rocket_color_left: colors[0],
+  rocket_color_right: colors[1],
+  planet_color_left: colors[0],
+  planet_color_right: colors[1],
+};
+
+var ROCKET_PRACTICE_UNCOMMON = {
+  type: 'rocket-practice',
+  common_left: false,
+  common_right: false,
+  rocket_color_left: colors[0],
+  rocket_color_right: colors[1],
+  planet_color_left: colors[0],
+  planet_color_right: colors[1],
 };
 
 var INSTRUCTIONS_17 = {
@@ -288,6 +313,11 @@ var INSTRUCTIONS = {
     INSTRUCTIONS_07,
     INSTRUCTIONS_08,
     INSTRUCTIONS_09,
+    ALIEN_PRACTICE,
+    ALIEN_PRACTICE,
+    ALIEN_PRACTICE,
+    ALIEN_PRACTICE,
+    ALIEN_PRACTICE,
     INSTRUCTIONS_10,
     INSTRUCTIONS_11,
     INSTRUCTIONS_12,
@@ -295,6 +325,56 @@ var INSTRUCTIONS = {
     INSTRUCTIONS_14,
     INSTRUCTIONS_15,
     INSTRUCTIONS_16,
-    INSTRUCTIONS_17,
-    INSTRUCTIONS_18,
+    ROCKET_PRACTICE_COMMON,
+    ROCKET_PRACTICE_COMMON,
+    ROCKET_PRACTICE_UNCOMMON,
+    ROCKET_PRACTICE_COMMON,
+    ROCKET_PRACTICE_COMMON,
+    ROCKET_PRACTICE_UNCOMMON,
+    ROCKET_PRACTICE_UNCOMMON,
+    ROCKET_PRACTICE_COMMON,
+    ROCKET_PRACTICE_COMMON,
+    ROCKET_PRACTICE_COMMON,
+    INSTRUCTIONS_17
 ]};
+
+var COMPREHENSION_01 = {
+  type: 'two-step-comprehension',
+  prompt: comp_q1,
+  options: [comp_q1_option1,comp_q1_option2],
+  preamble: 'Question 1',
+  correct_option: comp_q1_correct,
+  feedback: comp_q1_feedback,
+}
+
+var COMPREHENSION_02 = {
+  type: 'two-step-comprehension',
+  prompt: comp_q2,
+  options: [comp_q2_option1,comp_q2_option2],
+  preamble: 'Question 2',
+  correct_option: comp_q2_correct,
+  feedback: comp_q2_feedback,
+}
+
+var COMPREHENSION_03 = {
+  type: 'two-step-comprehension',
+  prompt: comp_q3,
+  options: [comp_q3_option1,comp_q3_option2],
+  preamble: 'Question 3',
+  correct_option: comp_q3_correct,
+  feedback: comp_q3_feedback
+}
+
+var COMPREHENSION_CHECK = {
+  timeline: [
+      COMPREHENSION_01,
+      COMPREHENSION_02,
+      COMPREHENSION_03
+]};
+
+var INSTRUCTIONS_19 = {
+  type: 'two-step-instructions',
+  pages: instructions_19, //text from two-step-instructions.js
+  show_clickable_nav: true,
+  show_page_number: false,
+};

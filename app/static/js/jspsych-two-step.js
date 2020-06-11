@@ -32,7 +32,7 @@ jsPsych.plugins["two-step"] = (function() {
       },
       rocket_color_right: {
         type: jsPsych.plugins.parameterType.HTML_STRING,
-        pretty_name: 'Rocket color left',
+        pretty_name: 'Rocket color right',
         description: 'Color of right rocket.'
       },
       planet_color_left: {
@@ -146,6 +146,10 @@ jsPsych.plugins["two-step"] = (function() {
     // Draw diamonds.
     new_html += '<div class="diamond" id="diamond-L" stage="1" side="left"></div>';
     new_html += '<div class="diamond" id="diamond-R" stage="1" side="right"></div>';
+
+    // Draw rocks.
+    new_html += '<div class="rock" id="rock-L" stage="1" side="left"></div>';
+    new_html += '<div class="rock" id="rock-R" stage="1" side="right"></div>';
 
     // Close wrapper.
     new_html += '</div>';
@@ -299,6 +303,9 @@ jsPsych.plugins["two-step"] = (function() {
         if ( response.stage_2_outcome == 1 ) {
           display_element.querySelector('#diamond-L').setAttribute('status', 'chosen');
         }
+        else {
+          display_element.querySelector('#rock-L').setAttribute('status', 'chosen');
+        }
 
       } else {
 
@@ -306,6 +313,9 @@ jsPsych.plugins["two-step"] = (function() {
 
         if ( response.stage_2_outcome == 1 ) {
           display_element.querySelector('#diamond-R').setAttribute('status', 'chosen');
+        }
+        else {
+          display_element.querySelector('#rock-R').setAttribute('status', 'chosen');
         }
 
       }

@@ -205,7 +205,7 @@ jsPsych.plugins["two-step-instructions"] = (function() {
     function drawOneAlien(){
       // Draw center alien.
       new_html += '<div class="alien" id="alien-R" stage="2" side="center">';
-      new_html += `<img id="alien-R-img" src="../static/img/alien02-${trial.planet_color_left}.png"></img>`;
+      new_html += `<img id="alien-R-img" src="../static/img/alien01-${trial.planet_color_left}.png"></img>`;
       new_html += '</div>';
     }
     if (trial.add_one_alien==true){

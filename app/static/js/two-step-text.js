@@ -17,7 +17,7 @@ var instructions_07 = ['The aliens are slowly changing where they are looking fo
 
 var instructions_08 = ['<b>Your goal is to find out which alien is digging where there is more treasure.</b><br><br><b>Hint:</b> The aliens might change sides, but they still each dig in their own mine, so it does not matter what side the alien is standing on when you ask it.'];
 
-var instructions_09 = ['Let\’s practice asking these two aliens for treasure. You can ask the alien on the left by pressing the LEFT ARROW KEY. You can ask the alien on the right by pressing the RIGHT ARROW KEY. <br><br>Press the next button to start practicing!'];
+var instructions_09 = ['We will practice asking these two aliens for treasure. You can ask the alien on the left by pressing the LEFT ARROW KEY. You can ask the alien on the right by pressing the RIGHT ARROW KEY. <br><br>Press the next button to start practicing!'];
 
 var instructions_10 = ['Great! You might have learned that this alien was currently looking in a place that was easy to dig for treasure.'];
 
@@ -33,7 +33,7 @@ var instructions_15 = ['Each rocketship goes to its preferred planet most of the
 
 var instructions_16 = ['Practice choosing the rocketships to learn which planet they go to most often.'];
 
-var instructions_17 = ['Great! Now we can practice the whole game. You will first choose which rocketship to take. Once you make it to a planet, there will be two aliens. You can only ask one alien for treasure per trip. Remember you are trying to get as much space treasure as you can! Let’s try practicing 20 flights.'];
+var instructions_17 = ['Great! Now we can practice the whole game. You will first choose which rocketship to take. Once you make it to a planet, there will be two aliens. You can only ask one alien for treasure per trip. Remember you are trying to get as much space treasure as you can! We will try practicing 20 flights.'];
 
 var instructions_18 = ['Great job! This game can be hard, so you will need to concentrate. Before we get started, we will do some review.'];
 
