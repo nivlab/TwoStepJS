@@ -285,7 +285,7 @@ jsPsych.plugins["two-step"] = (function() {
 
       // Determine outcome.
       const ix = response.stage_1_choice * 2 + response.stage_2_choice;
-      if ( Math.random() > trial.outcome_probs[ix] ) {
+      if ( Math.random() < trial.outcome_probs[ix] ) {
         response.stage_2_outcome = 1;
       } else {
         response.stage_2_outcome = 0;
