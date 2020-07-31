@@ -67,4 +67,4 @@ var instructions_19 = [' Wonderful! Now you are ready to begin the game. Remembe
 
 var block_end = ['Take a break! Press the right arrow key when you are ready to continue.'];
 
-var exp_end = ['Exp end test text.'];
+var exp_end = ['You have reach the end of the experment. Thank you!'];
