@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Space Trading</title>
+
+  <!-- Load libraries -->
+  <script src="../static/lib/jquery-3.3.1/jquery.min.js"></script>
+  <script src="../static/lib/jspsych-6.1.0/jspsych.js"></script>
+
+  <!-- Load experiment -->
+  <script src="../static/js/two-step-drifts.js" type="text/javascript"></script>
+  <script src="../static/js/two-step-text.js" type="text/javascript"></script>
+  <script src="../static/js/two-step-experiment.js" type="text/javascript"></script>
+  <script src="../static/js/alien-practice.js" type="text/javascript"></script>
+  <script src="../static/js/rocket-practice.js" type="text/javascript"></script>
+  <script src="../static/js/two-step-comprehension.js" type="text/javascript"></script>
+
+
+  <!-- Load jsPsych plug-ins -->
+  <script src="../static/js/jspsych-pass-data.js" type="text/javascript"></script>
+  <script src="../static/js/jspsych-reject-data.js" type="text/javascript"></script>
+  <script src="../static/js/two-step-instructions.js" type="text/javascript"></script>
+  <script src="../static/js/jspsych-two-step.js" type="text/javascript"></script>
+  <script src="../static/lib/jspsych-6.1.0/plugins/jspsych-survey-likert.js"></script>
+  <script src="../static/lib/jspsych-6.1.0/plugins/jspsych-instructions.js"></script>
+  <script src="../static/lib/jspsych-6.1.0/plugins/jspsych-html-keyboard-response.js"></script>
+  <script src="../static/lib/jspsych-6.1.0/plugins/jspsych-survey-text.js"></script>
+
+  <!-- Load CSS styles -->
+  <link href="../static/lib/jspsych-6.1.0/css/jspsych.css" rel="stylesheet" type="text/css"></link>
+  <link href="../static/css/two-step-css.min.css" rel="stylesheet" type="text/css"></link>
+
+</head>
+<body></body>
+<script>
+
+  // Add version metadata.
+  jsPsych.data.addProperties({
+    task_version: '0.1',
+  });
+
+  // TODO: add rock pic to this
+  // Define images to preload.
+  preload_images = [
+    '../static/img/background-stars.png',
+    '../static/img/reward-diamond.png',
+    '../static/img/reward-gems.png',
+    '../static/img/alien01-blue.png',
+    '../static/img/alien01-red.png',
+    '../static/img/alien01-green.png',
+    '../static/img/alien01-purple.png',
+    '../static/img/alien02-blue.png',
+    '../static/img/alien02-red.png',
+    '../static/img/alien02-green.png',
+    '../static/img/alien02-purple.png',
+    '../static/img/alien03-blue.png',
+    '../static/img/alien03-red.png',
+    '../static/img/alien03-green.png',
+    '../static/img/alien03-purple.png',
+    '../static/img/alien04-blue.png',
+    '../static/img/alien04-red.png',
+    '../static/img/alien04-green.png',
+    '../static/img/alien04-purple.png'
+  ]
+
+
+  // Define example trial.
+  //moved this line to the text file
+  //var rockets = jsPsych.randomization.shuffle(['red','blue']);
+
+  // Define timeline, blocks, and number of trials in a block.
+  var timeline = [];
+
+  // Total number of blocks
+  var num_blocks = 3;
+
+  // Number of trials in each block
+  var block_len = 2; //in Val's version there are 33 trials per block (99 total)
+
+  // ADDING TRIALS TO THE TIMELINE
+
+  // Add instructions for the task_version
+  // timeline = timeline.concat(subject_id);
+  timeline = timeline.concat(INSTRUCTIONS);
+  timeline = timeline.concat(TWO_STEP_PRACTICE);
+  timeline = timeline.concat(INSTRUCTIONS_18);
+  timeline = timeline.concat(COMPREHENSION_CHECK);
+  timeline = timeline.concat(INSTRUCTIONS_19);
+
+  // Add trials to the TIMELINE
+  timeline = timeline.concat(TWO_STEP_TRIALS_BLOCK_1);
+  timeline = timeline.concat(TWO_STEP_TRIALS_BLOCK_2);
+
+
+  jsPsych.init({
+    timeline: timeline,
+    show_progress_bar: true,
+    preload_images: preload_images,
+    on_finish: function() {
+
+      // Add interactions to the data variable
+      var interaction_data = jsPsych.data.getInteractionData();
+      jsPsych.data.get().addToLast({interactions: interaction_data.json()});
+
+      // Display jsPsych data in viewport.
+      //jsPsych.data.displayData();
+
+      // Save complete dataset to disk.
+      pass_data("{{workerId}}", "{{assignmentId}}", "{{hitId}}",  "{{a}}", "{{tp_a}}", "{{b}}", "{{tp_b}}", "{{c}}", "{{tp_c}}");
+
+    }
+  })
+
+</script>
+</html>
