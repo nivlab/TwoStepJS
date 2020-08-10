@@ -3,7 +3,7 @@ from flask import (Flask, redirect, render_template, request, session, url_for)
 from app import consent, alert, experiment, complete, error
 from .io import write_metadata
 from .utils import gen_code
-__version__ = '0.9.9.3'
+__version__ = '0.9.8'
 
 ## Define root directory.
 ROOT_DIR = os.path.dirname(os.path.realpath(__file__))
@@ -20,15 +20,14 @@ if not os.path.isdir(meta_dir): os.makedirs(meta_dir)
 reject_dir = os.path.join(ROOT_DIR, cfg['IO']['REJECT'])
 if not os.path.isdir(reject_dir): os.makedirs(reject_dir)
 
-## Check Flask mode; if debug mode, clear session variable.
-debug = cfg['FLASK']['DEBUG'] != "FALSE"
-if debug:
-    msg = "WARNING: Flask currently in debug mode. This should be changed prior to production."
-    warnings.warn(msg)
-
 ## Check Flask password.
 if cfg['FLASK']['SECRET_KEY'] == "PLEASE_CHANGE_THIS":
     msg = "WARNING: Flask password is currently default. This should be changed prior to production."
+    warnings.warn(msg)
+
+## Check Flask mode.
+if cfg['FLASK']['DEBUG'] != "FALSE":
+    msg = "WARNING: Flask currently in debug mode. This should be changed prior to production."
     warnings.warn(msg)
 
 ## Initialize Flask application.
@@ -46,22 +45,24 @@ app.register_blueprint(error.bp)
 @app.route('/')
 def index():
 
-    ## Debug mode: clear session.
-    if debug:
-        session.clear()
-
     ## Store directories in session object.
     session['data'] = data_dir
     session['metadata'] = meta_dir
     session['reject'] = reject_dir
+    session['debug'] = cfg['FLASK']['DEBUG'] != "FALSE"
 
     ## Record incoming metadata.
     info = dict(
-        workerId     = request.args.get('PROLIFIC_PID'),    # Prolific metadata; renamed for consistency with MTurk
-        assignmentId = request.args.get('SESSION_ID'),      # Prolific metadata; renamed for consistency with MTurk
-        hitId        = request.args.get('STUDY_ID'),        # Prolific metadata; renamed for consistency with MTurk
+        workerId     = request.args.get('workerId'),        # MTurk metadata
+        assignmentId = request.args.get('assignmentId'),    # MTurk metadata
+        hitId        = request.args.get('hitId'),           # MTurk metadata
         subId        = gen_code(24),                        # NivTurk metadata
-        address      = request.remote_addr,                 # NivTurk metadata
+        a            = request.args.get('a'),               # TurkPrime metadata
+        tp_a         = request.args.get('tp_a'),            # TurkPrime metadata
+        b            = request.args.get('b'),               # TurkPrime metadata
+        tp_b         = request.args.get('tp_b'),            # TurkPrime metadata
+        c            = request.args.get('c'),               # TurkPrime metadata
+        tp_c         = request.args.get('tp_c'),            # TurkPrime metadata
         browser      = request.user_agent.browser,          # User metadata
         platform     = request.user_agent.platform,         # User metadata
         version      = request.user_agent.version,          # User metadata
@@ -79,18 +80,7 @@ def index():
         ## Redirect participant to error (admin error).
         return redirect(url_for('error.error', errornum=1001))
 
-    ## Case 3: repeat visit, preexisting log but no session data (suspected incognito).
-    elif not 'workerId' in session and info['workerId'] in os.listdir(meta_dir):
-
-        ## Update metadata.
-        session['workerId'] = info['workerId']
-        session['ERROR'] = '1004: suspected incognito user.'
-        write_metadata(session, ['ERROR'], 'a')
-
-        ## Redirect participant to error (unusual activity).
-        return redirect(url_for('error.error', errornum=1004))
-
-    ## Case 4: repeat visit, manually changed workerId.
+    ## Case 3: repeat visit, manually changed workerId.
     elif 'workerId' in session and session['workerId'] != info['workerId']:
 
         ## Update metadata.
@@ -100,17 +90,18 @@ def index():
         ## Redirect participant to error (unusual activity).
         return redirect(url_for('error.error', errornum=1002))
 
-    ## Case 5: repeat visit, preexisting activity.
-    elif 'workerId' in session:
+    ## Case 4: repeat visit, preexisting activity.
+    elif 'workerId' in session or info['workerId'] in os.listdir(meta_dir):
 
         ## Update metadata.
+        for k, v in info.items(): session[k] = v
         session['WARNING'] = "Revisited home."
         write_metadata(session, ['WARNING'], 'a')
 
         ## Redirect participant to consent form.
         return redirect(url_for('consent.consent'))
 
-    ## Case 6: first visit, workerId present.
+    ## Case 5: first visit, workerId present.
     else:
 
         ## Update metadata.
@@ -119,3 +110,10 @@ def index():
 
         ## Redirect participant to consent form.
         return redirect(url_for('consent.consent'))
+
+## DEV NOTE:
+## The following route is strictly for development purpose and should be commented out before deployment.
+# @app.route('/clear')
+# def clear():
+#     session.clear()
+#     return 'Complete!'

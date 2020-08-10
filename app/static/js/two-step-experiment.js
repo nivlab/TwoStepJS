@@ -509,20 +509,20 @@ var COMPREHENSION_02 = {
   feedback: comp_q2_feedback,
 }
 
-var COMPREHENSION_03 = {
-  type: 'two-step-comprehension',
-  prompt: comp_q3,
-  options: [comp_q3_option1,comp_q3_option2],
-  preamble: 'Question 3',
-  correct_option: comp_q3_correct,
-  feedback: comp_q3_feedback
-}
+// var COMPREHENSION_03 = {
+//   type: 'two-step-comprehension',
+//   prompt: comp_q3,
+//   options: [comp_q3_option1,comp_q3_option2],
+//   preamble: 'Question 3',
+//   correct_option: comp_q3_correct,
+//   feedback: comp_q3_feedback
+// }
 
 var COMPREHENSION_CHECK = {
   timeline: [
       COMPREHENSION_01,
-      COMPREHENSION_02,
-      COMPREHENSION_03
+      COMPREHENSION_02
+      // COMPREHENSION_03
 ]};
 
 var INSTRUCTIONS_19 = {

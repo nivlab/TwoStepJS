@@ -9,7 +9,7 @@ def experiment():
     """Present jsPsych experiment to participant."""
 
     ## Error-catching: screen for previous visits.
-    if 'experiment' in session:
+    if not session['debug'] and 'experiment' in session:
 
         ## Update participant metadata.
         session['ERROR'] = "1004: Revisited experiment."
@@ -25,7 +25,7 @@ def experiment():
         write_metadata(session, ['experiment'], 'a')
 
         ## Present experiment.
-        return render_template('experiment.html', workerId=session['workerId'], assignmentId=session['assignmentId'], hitId=session['hitId'])
+        return render_template('experiment.html', workerId=session['workerId'], assignmentId=session['assignmentId'], hitId=session['hitId'], a=session['a'], tp_a=session['tp_a'], b=session['b'], tp_b=session['tp_b'], c=session['c'], tp_c=session['tp_c'])
 
 @bp.route('/experiment', methods=['POST'])
 def experiment_post():
@@ -52,9 +52,6 @@ def data_pass():
     """Save complete jsPsych dataset to disk."""
 
     if request.is_json:
-
-        ## Flag experiment as complete.
-        session['complete'] = True
 
         ## Retrieve jsPsych data.
         JSON = request.get_json()
@@ -83,8 +80,9 @@ def data_reject():
         write_data(session, JSON, method='reject')
 
     ## Update participant metadata.
+    session['complete'] = True
     session['ERROR'] = "1011: Noncompliant behavior."
-    write_metadata(session, ['ERROR'], 'a')
+    write_metadata(session, ['complete','ERROR'], 'a')
 
     ## DEV NOTE:
     ## This function returns the HTTP response status code: 200
