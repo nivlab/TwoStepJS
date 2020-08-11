@@ -23,7 +23,7 @@ var instructions_10 = ['Great! You might have learned that this alien was most l
 
 var instructions_11 = ['There are some helpful hints for treasure hunting with the aliens.'];
 
-var instructions_12 = ['<b>Hint 1:</b> Aliens change how often they give you treasure slowly. So if an alien is giving lots of treasure right now, it will probably keep giving treasure for a while. If an alien is not giving much treasure right now, it will probably not give you much treasure for a while.'];
+var instructions_12 = ['<b>Hint 1:</b> Aliens slowly change how often they give you treasure. So if an alien is giving lots of treasure right now, it will probably keep giving treasure often for a while. If an alien is not giving much treasure right now, it will probably not give you much treasure for a while.'];
 
 var instructions_13 = ['<b>Hint 2:</b> If one alien is not giving much treasure, that does not mean the other one is giving more treasure. There are no patterns like giving you treasure every other time.'];
 

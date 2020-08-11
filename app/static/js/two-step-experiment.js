@@ -531,3 +531,5 @@ var INSTRUCTIONS_19 = {
   show_clickable_nav: true,
   show_page_number: false,
 };
+
+var DEMO = {type: 'survey-demo'};
