@@ -7,7 +7,7 @@ var instructions_02 = ['In this game, you can hunt for treasure on two different
 
 var instructions_03 = ['Each planet has two aliens that live there. When you ask an alien for treasure, it will either give you treasure or give you rocks.'];
 
-var instructions_04 = ['This is what space treasure looks like!'];
+var instructions_04 = ['This is what treasure looks like!'];
 
 var instructions_05 = ['This is what the rocks an alien might give you will look like.'];
 
@@ -42,11 +42,11 @@ var instructions_18 = ['Great job! This game can be hard, so you will need to co
 // Comprehension check questions
 
 // Question 1
-var comp_q1 = '<p class="jspsych-survey-multi-choice-text survey-multi-choice">True or False: The aliens slowly change where they look in their mines over time. If an alien is digging in a spot that is easy to find treasure in right now, it might dig in a spot that is harder to find treasure in, in the future. If an alien is digging in a spot that is hard to find treasure in right now, it might dig in a spot that is easy to find treasure in, in the future. The aliens will only change where they are looking slowly. </p>';
+var comp_q1 = '<p class="jspsych-survey-multi-choice-text survey-multi-choice">True or False: The aliens slowly change how often they give you treasure over time. If an alien is likely to give you treasure right now, it might become less likely to give you treasure in the future. If an alien is unlikely to give you treasure right now, it might become more likely to give you treasure in the future. While the aliens change how likely they are to give you treasure, they will only change slowly. </p>';
 
 var comp_q1_option1 = "True";
 var comp_q1_option2 = "False";
-var comp_q1_feedback = "Hint:  The aliens are slowly checking new places in their mines, and those places might be it easier or harder to dig.";
+var comp_q1_feedback = "Hint:  The aliens slowly change how likely they are to give you treasure.";
 var comp_q1_correct = "0"; //indicate which option is the correct answer (starting at zero)
 
 //Question 2
