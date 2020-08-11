@@ -114,8 +114,6 @@ jsPsych.plugins["two-step-instructions"] = (function() {
     // Draw stars.
     new_html += '<div class="stars"></div>';
 
-
-
     function addMoons(){
       // Draw left moon.
       new_html += `<div class="moon" id="moon-L" side="left" color="${trial.planet_color_left}">`;
@@ -132,7 +130,6 @@ jsPsych.plugins["two-step-instructions"] = (function() {
 
     if (trial.add_moons == true){
       addMoons();
-      console.log('Moons should appear.');
     }
 
     // End sky.
@@ -172,7 +169,6 @@ jsPsych.plugins["two-step-instructions"] = (function() {
     }
 
     function drawAliens(){
-      console.log('Drawing aliens');
       // Draw left alien.
       new_html += '<div class="alien" id="alien-L" stage="2" side="left">';
       new_html += `<img id="alien-L-img" src="../static/img/alien01-${trial.planet_color_left}.png"></img>`;
@@ -213,7 +209,7 @@ jsPsych.plugins["two-step-instructions"] = (function() {
     }
 
     new_html += '<div class="jspsych-instructions-nav">';
-    new_html += '<button id="jspsych-instructions-back" class="jspsych-btn" style="margin-right: 5px;" disabled="disabled">&lt; Prev</button>';
+    new_html += '<button id="jspsych-instructions-back" class="jspsych-btn" style="margin-right: 5px;">&lt; Prev</button>'; //disabled="disabled"
     new_html += '<button id="jspsych-instructions-next" class="jspsych-btn" style="margin-left: 5px;">Next &gt;</button>';
     new_html += '</div>';
 

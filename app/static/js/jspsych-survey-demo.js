@@ -259,7 +259,6 @@ jsPsych.plugins['survey-demo'] = (function() {
       var field = form.elements[i];
 
 
-      console.log(field)
       // Don't serialize fields without a name, submits, buttons, file and reset inputs, and disabled fields
       if (!field.name || field.disabled || field.type === 'file' || field.type === 'reset' || field.type === 'submit' || field.type === 'button') continue;
 

@@ -244,9 +244,6 @@ jsPsych.plugins["two-step"] = (function() {
       display_element.querySelector('.landscape-ground').setAttribute('color', planet_color);
       display_element.querySelector('#alien-L-img').setAttribute('src', `../static/img/alien0${alien_index_left}-${planet_color}.png`);
       display_element.querySelector('#alien-R-img').setAttribute('src', `../static/img/alien0${alien_index_right}-${planet_color}.png`);
-
-      console.log(alien_index_left);
-      console.log(alien_index_right);
     }
 
     var stage_transition = function() {
@@ -361,7 +358,7 @@ jsPsych.plugins["two-step"] = (function() {
           response.stage_2_choice = trial.alien_left_2;
         }
       }
-      console.log(response.stage_2_choice);
+
 
       // Map the alien type to its drift type. This was randomly determined by
       // shuffling the drift_type array, which is an array of indices.
@@ -372,6 +369,8 @@ jsPsych.plugins["two-step"] = (function() {
       const ix = drift_types[drift_index];
 
       // Determine the outcome
+
+      trial.state_2_outcome_prob = trial.outcome_probs[ix];
       if ( Math.random() < trial.outcome_probs[ix] ) {
         response.stage_2_outcome = 1;
       } else {
@@ -434,11 +433,9 @@ jsPsych.plugins["two-step"] = (function() {
         stage_2_rt: response.stage_2_rt,
         stage_2_choice: response.stage_2_choice,
         stage_2_outcome: response.stage_2_outcome,
-        state_2_outcome_prob: trial.state2_outcome_prob,
+        state_2_outcome_prob: trial.state_2_outcome_prob,
         alien_drift_choice: drift_types[response.stage_2_choice-1],
       };
-
-      console.log(trial_data.alien_drift_choice);
 
       // clear the display
       display_element.innerHTML = '';

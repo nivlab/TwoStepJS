@@ -175,8 +175,6 @@ var trial = null;
   else{
     TWO_STEP_TRIALS_BLOCK_2.push(trial);
   }
-
-
 }
 TWO_STEP_TRIALS_BLOCK_1.push({
   type: 'two-step-instructions',
@@ -188,10 +186,6 @@ TWO_STEP_TRIALS_BLOCK_1.push({
   planet_color_left: colors[0],
   planet_color_right: colors[1],
 });
-
-
-
-
 
 var INSTRUCTIONS_01 = {
   type: 'two-step-instructions',

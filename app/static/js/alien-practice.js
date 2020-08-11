@@ -208,9 +208,9 @@ jsPsych.plugins["alien-practice"] = (function() {
       jsPsych.finishTrial(trial_data);
     };
 
-    function after_first_response(){
-        console.log('place holder');
-    }
+    // function after_first_response(){
+    //     console.log('place holder');
+    // }
 
     // start the response listener
     var keyboardListener = jsPsych.pluginAPI.getKeyboardResponse({
