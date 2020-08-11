@@ -9,7 +9,7 @@ var instructions_03 = ['Each planet has two aliens that live there. When you ask
 
 var instructions_04 = ['This is what space treasure looks like!'];
 
-var instructions_05 = ['This is what rocks look like.'];
+var instructions_05 = ['This is what the rocks an alien might give you will look like.'];
 
 var instructions_06 = ['How often each alien gives you treasure changes slowly over time.'];
 
