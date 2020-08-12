@@ -1,15 +1,15 @@
 
 //colors must be determined to display in the text
 
-var instructions_01 = ['Welcome to the Treasure Hunting Game! Here, you will be hunting for treasure in outer space. You can use the arrow keys to navigate.'];
+var instructions_01 = ['Welcome to the Treasure Trade Game! Here, you will be looking for treasure in outer space. You can use the arrow keys to navigate.'];
 
-var instructions_02 = ['In this game, you can hunt for treasure on two different planets with the help of some aliens.'];
+var instructions_02 = ['In this game, you can look for treasure on two different planets.'];
 
 var instructions_03 = ['Each planet has two aliens that live there. When you ask an alien for treasure, it will either give you treasure or give you rocks.'];
 
-var instructions_04 = ['This is what treasure looks like!'];
+var instructions_04 = ['This is what treasure will look like!'];
 
-var instructions_05 = ['This is what the rocks an alien might give you will look like.'];
+var instructions_05 = ['This is what rocks will look like.'];
 
 var instructions_06 = ['How often each alien gives you treasure changes slowly over time.'];
 
