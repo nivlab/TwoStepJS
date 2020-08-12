@@ -6,7 +6,7 @@
 colors = jsPsych.randomization.sampleWithoutReplacement(['blue','red','purple','green'], 4);
 
 // Define outcome probabilities.
-// Choose one of the four possible drifts at random. 
+// Choose one of the four possible drifts at random.
 const drift_ix  = jsPsych.randomization.shuffle([0,1,2,3], 1)[0];
 const drifts    = [drifts_01, drifts_02, drifts_03, drifts_04][drift_ix];
 
@@ -58,14 +58,15 @@ var   common_right      = [];
 const switched_sides_rocket  = [true,true,true,true,true,false,false,false,false,false]
 var   switched_rocket        = [];
 
-// Allow aliens to switch switched_sides_rocket
+// Allow aliens to switch
 const switched_sides_alien  = [true,true,true,true,true,false,false,false,false,false]
 var   switched_alien        = [];
 
 
 for (var i=0; i<20; i++) {
   common_left         = common_left.concat(jsPsych.randomization.shuffle(common, 1));
-  common_right        = common_right.concat(jsPsych.randomization.shuffle(common, 1));
+  // sides may become unbalanced in their transition probs given the randomized side switching.
+  common_right        = common_left; //common_right.concat(jsPsych.randomization.shuffle(common, 1));
   switched_rocket     = switched_rocket.concat(jsPsych.randomization.shuffle(switched_sides_rocket, 1));
   switched_alien      = switched_alien.concat(jsPsych.randomization.shuffle(switched_sides_alien, 1));
 }
