@@ -6,6 +6,7 @@
 colors = jsPsych.randomization.sampleWithoutReplacement(['blue','red','purple','green'], 4);
 
 // Define outcome probabilities.
+// Choose one of the four possible drifts at random. 
 const drift_ix  = jsPsych.randomization.shuffle([0,1,2,3], 1)[0];
 const drifts    = [drifts_01, drifts_02, drifts_03, drifts_04][drift_ix];
 
@@ -77,7 +78,7 @@ var TWO_STEP_PRACTICE         = [];
 // 200 trials total
 // 20 practice
 // 180 in blocks
-for (var i=0; i<10; i++) { //i<200
+for (var i=0; i<200; i++) {
 var trial = null;
   // Define trials.
   // flip left and right rocket colors
@@ -163,12 +164,12 @@ var trial = null;
 
   // Append trial.
   //20 practice trials
-  if (i<2){ //i<20
+  if (i<20){
     TWO_STEP_PRACTICE.push(trial);
   }
 
   // 90 real trials for the first block
-  else if (i < 5){
+  else if (i < 110){
      TWO_STEP_TRIALS_BLOCK_1.push(trial);
   }
 
@@ -448,23 +449,23 @@ var INSTRUCTIONS = {
     ALIEN_PRACTICE,  //x20 alien practice
     ALIEN_PRACTICE,
     ALIEN_PRACTICE,
-    // ALIEN_PRACTICE,
-    // ALIEN_PRACTICE,
-    // ALIEN_PRACTICE,
-    // ALIEN_PRACTICE,
-    // ALIEN_PRACTICE,
-    // ALIEN_PRACTICE,
-    // ALIEN_PRACTICE,
-    // ALIEN_PRACTICE,
-    // ALIEN_PRACTICE,
-    // ALIEN_PRACTICE,
-    // ALIEN_PRACTICE,
-    // ALIEN_PRACTICE,
-    // ALIEN_PRACTICE,
-    // ALIEN_PRACTICE,
-    // ALIEN_PRACTICE,
-    // ALIEN_PRACTICE,
-    // ALIEN_PRACTICE,
+    ALIEN_PRACTICE,
+    ALIEN_PRACTICE,
+    ALIEN_PRACTICE,
+    ALIEN_PRACTICE,
+    ALIEN_PRACTICE,
+    ALIEN_PRACTICE,
+    ALIEN_PRACTICE,
+    ALIEN_PRACTICE,
+    ALIEN_PRACTICE,
+    ALIEN_PRACTICE,
+    ALIEN_PRACTICE,
+    ALIEN_PRACTICE,
+    ALIEN_PRACTICE,
+    ALIEN_PRACTICE,
+    ALIEN_PRACTICE,
+    ALIEN_PRACTICE,
+    ALIEN_PRACTICE,
     INSTRUCTIONS_10,
     INSTRUCTIONS_11,
     INSTRUCTIONS_12,
@@ -503,6 +504,7 @@ var COMPREHENSION_02 = {
   feedback: comp_q2_feedback,
 }
 
+// REMOVED DUE TO NON-JUDGMENTAL WORDING CHANGE (MALFUNCTION WORDING REMOVED)
 // var COMPREHENSION_03 = {
 //   type: 'two-step-comprehension',
 //   prompt: comp_q3,
