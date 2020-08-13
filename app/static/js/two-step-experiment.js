@@ -530,3 +530,4 @@ var INSTRUCTIONS_19 = {
 };
 
 var DEMO = {type: 'survey-demo'};
+var DEBRIEF = {type: 'survey-debrief'};

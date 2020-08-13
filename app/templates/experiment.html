@@ -21,6 +21,7 @@
   <script src="../static/js/two-step-instructions.js" type="text/javascript"></script>
   <script src="../static/js/jspsych-two-step.js" type="text/javascript"></script>
   <script src="../static/js/jspsych-survey-demo.js" type="text/javascript"></script>
+  <script src="../static/js/jspsych-survey-debrief.js" type="text/javascript"></script>
   <script src="../static/lib/jspsych-6.1.0/plugins/jspsych-survey-likert.js"></script>
   <script src="../static/lib/jspsych-6.1.0/plugins/jspsych-instructions.js"></script>
   <script src="../static/lib/jspsych-6.1.0/plugins/jspsych-html-keyboard-response.js"></script>
@@ -92,7 +93,7 @@
   timeline = timeline.concat(TWO_STEP_TRIALS_BLOCK_1);
   timeline = timeline.concat(TWO_STEP_TRIALS_BLOCK_2);
   timeline = timeline.concat(DEMO);
-
+  timeline = timeline.concat(DEBRIEF);
 
   jsPsych.init({
     timeline: timeline,
