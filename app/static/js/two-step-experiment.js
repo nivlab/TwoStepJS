@@ -3,7 +3,16 @@
 //---------------------------------------//
 
 // Define color assignment.
-colors = jsPsych.randomization.sampleWithoutReplacement(['blue','red','purple','green'], 4);
+alien_colors = jsPsych.randomization.sampleWithoutReplacement(['blue','red','purple','green'], 4);
+planet_colors = [];
+
+// Make sure the planet colors differ from the alien colors
+for (i = 0; i < alien_colors.length; i++){
+  planet_colors = planet_colors.concat(alien_color[i+2]);
+}
+
+
+//// TODO: change the colors references in the trials to match the above variable names
 
 // Define outcome probabilities.
 // Choose one of the four possible drifts at random.
@@ -55,7 +64,7 @@ var   common_left       = [];
 var   common_right      = [];
 
 // Allow colors to randomly change sides to mitigate side bias
-const switched_sides_rocket  = [true,true,true,true,true,false,false,false,false,false]
+const switched_sides_rocket  = [true,true,true,true,true,false,false,false,false,false];
 var   switched_rocket        = [];
 
 // Allow aliens to switch
