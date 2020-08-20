@@ -224,12 +224,14 @@ jsPsych.plugins["two-step"] = (function() {
       } else if ( response.stage_1_choice == 1 ) {
         display_element.querySelector('#rocket-L').setAttribute('stage', 'uncommon');
         display_element.querySelector('#fire-L').style['display'] = 'inherit';
+        // console.log('uncommon');
       } else if ( response.stage_1_choice == 0 && trial.common_right ) {
         display_element.querySelector('#rocket-R').setAttribute('stage', 'common');
         display_element.querySelector('#fire-R').style['display'] = 'inherit';
       } else {
         display_element.querySelector('#rocket-R').setAttribute('stage', 'uncommon');
         display_element.querySelector('#fire-R').style['display'] = 'inherit';
+        // console.log('uncommon');
       }
 
       // Pause for animation.

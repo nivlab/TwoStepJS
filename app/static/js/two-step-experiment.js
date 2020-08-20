@@ -3,14 +3,13 @@
 //---------------------------------------//
 
 // Define color assignment.
-alien_colors = jsPsych.randomization.sampleWithoutReplacement(['blue','red','purple','green'], 4);
-planet_colors = [];
+planet_color = jsPsych.randomization.sampleWithoutReplacement(['blue','red','purple','green'], 4);
+rocket_color = [];
 
 // Make sure the planet colors differ from the alien colors
-for (i = 0; i < alien_colors.length; i++){
-  planet_colors = planet_colors.concat(alien_color[i+2]);
+for (i = planet_color.length-1; i >= 0; i--){
+  rocket_color = rocket_color.concat(planet_color[i]);
 }
-
 
 //// TODO: change the colors references in the trials to match the above variable names
 
@@ -59,7 +58,20 @@ var drift_types = [0,1,2,3];
 drift_types     = jsPsych.randomization.shuffle(drift_types, 1)
 
 // Predefine common transitions.
-const common            = [true, true, true, true, true, true, true, false, false, false];
+var p = -1;
+var common = [];
+
+// allow random draws, but trancate anything that falls too far towards the tails
+while (p > 0.8 || p < 0.6){
+  common = jsPsych.randomization.sampleWithReplacement([1,0], 200, [0.7,0.3]);
+  var sum = 0.0;
+  for(var i = 0; i < common.length; i++){
+      sum += common[i];
+  }
+  p = sum/common.length;
+}
+
+// const common            = [true, true, true, true, true, true, true, false, false, false];
 var   common_left       = [];
 var   common_right      = [];
 
@@ -73,9 +85,9 @@ var   switched_alien        = [];
 
 
 for (var i=0; i<20; i++) {
-  common_left         = common_left.concat(jsPsych.randomization.shuffle(common, 1));
+  common_left         = common; //common_left.concat(jsPsych.randomization.shuffle(common, 1));
   // sides may become unbalanced in their transition probs given the randomized side switching.
-  common_right        = common_left; //common_right.concat(jsPsych.randomization.shuffle(common, 1));
+  common_right        = common; //common_left; //common_right.concat(jsPsych.randomization.shuffle(common, 1));
   switched_rocket     = switched_rocket.concat(jsPsych.randomization.shuffle(switched_sides_rocket, 1));
   switched_alien      = switched_alien.concat(jsPsych.randomization.shuffle(switched_sides_alien, 1));
 }
@@ -98,10 +110,10 @@ var trial = null;
       type: 'two-step',
       common_left: common_left[i],
       common_right: common_right[i],
-      rocket_color_left: colors[1],
-      rocket_color_right: colors[0],
-      planet_color_left: colors[1],
-      planet_color_right: colors[0],
+      rocket_color_left: rocket_color[1],
+      rocket_color_right: rocket_color[0],
+      planet_color_left: planet_color[1],
+      planet_color_right: planet_color[0],
       alien_left_1: alien_shapes[2],
       alien_left_2: alien_shapes[3],
       alien_right_1: alien_shapes[0],
@@ -110,17 +122,17 @@ var trial = null;
       data: { trial: i+1, drift_id: drift_ix+1 }
     };
   }
-  // flip left and right rocket colors
+  // flip left and right rocket
   // flip aliens
   else if (switched_rocket[i] & switched_alien[i]) {
     trial = {
       type: 'two-step',
       common_left: common_left[i],
       common_right: common_right[i],
-      rocket_color_left: colors[1],
-      rocket_color_right: colors[0],
-      planet_color_left: colors[1],
-      planet_color_right: colors[0],
+      rocket_color_left: rocket_color[1],
+      rocket_color_right: rocket_color[0],
+      planet_color_left: planet_color[1],
+      planet_color_right: planet_color[0],
       alien_left_1: alien_shapes[3],
       alien_left_2: alien_shapes[2],
       alien_right_1: alien_shapes[1],
@@ -129,17 +141,17 @@ var trial = null;
       data: { trial: i+1, drift_id: drift_ix+1 }
     };
   }
-  // don't flip left and right rocket colors
+  // don't flip left and right rocket planet_color
   // don't flip aliens
   else if (!switched_rocket[i] & !switched_alien[i]) {
     trial = {
       type: 'two-step',
       common_left: common_left[i],
       common_right: common_right[i],
-      rocket_color_left: colors[0],
-      rocket_color_right: colors[1],
-      planet_color_left: colors[0],
-      planet_color_right: colors[1],
+      rocket_color_left: rocket_color[0],
+      rocket_color_right: rocket_color[1],
+      planet_color_left: planet_color[0],
+      planet_color_right: planet_color[1],
       alien_left_1: alien_shapes[0],
       alien_left_2: alien_shapes[1],
       alien_right_1: alien_shapes[2],
@@ -155,10 +167,10 @@ var trial = null;
       type: 'two-step',
       common_left: common_left[i],
       common_right: common_right[i],
-      rocket_color_left: colors[0],
-      rocket_color_right: colors[1],
-      planet_color_left: colors[0],
-      planet_color_right: colors[1],
+      rocket_color_left: rocket_color[0],
+      rocket_color_right: rocket_color[1],
+      planet_color_left: planet_color[0],
+      planet_color_right:  planet_color[1],
       alien_left_1: alien_shapes[1],
       alien_left_2: alien_shapes[0],
       alien_right_1: alien_shapes[3],
@@ -192,10 +204,10 @@ TWO_STEP_TRIALS_BLOCK_1.push({
   pages: block_end, //text from two-step-instructions.js
   show_clickable_nav: true,
   show_page_number: false,
-  rocket_color_left: colors[0],
-  rocket_color_right: colors[1],
-  planet_color_left: colors[0],
-  planet_color_right: colors[1],
+  rocket_color_left: rocket_color[0],
+  rocket_color_right: rocket_color[1],
+  planet_color_left: planet_color[0],
+  planet_color_right: planet_color[1],
 });
 
 var INSTRUCTIONS_01 = {
@@ -203,10 +215,10 @@ var INSTRUCTIONS_01 = {
   pages: instructions_01, //text from two-step-instructions.js
   show_clickable_nav: true,
   show_page_number: false,
-  rocket_color_left: colors[2],
-  rocket_color_right: colors[3],
-  planet_color_left: colors[2],
-  planet_color_right: colors[3],
+  rocket_color_left: rocket_color[2],
+  rocket_color_right: rocket_color[3],
+  planet_color_left: planet_color[2],
+  planet_color_right: planet_color[3],
 };
 
 var INSTRUCTIONS_02 = {
@@ -214,10 +226,10 @@ var INSTRUCTIONS_02 = {
   pages: instructions_02, //text from two-step-instructions.js
   show_clickable_nav: true,
   show_page_number: false,
-  rocket_color_left: colors[2],
-  rocket_color_right: colors[3],
-  planet_color_left: colors[2],
-  planet_color_right: colors[3],
+  rocket_color_left: rocket_color[2],
+  rocket_color_right: rocket_color[3],
+  planet_color_left: planet_color[2],
+  planet_color_right: planet_color[3],
   add_moons: true
 };
 
@@ -226,10 +238,10 @@ var INSTRUCTIONS_03 = {
   pages: instructions_03, //text from two-step-instructions.js
   show_clickable_nav: true,
   show_page_number: false,
-  rocket_color_left: colors[2],
-  rocket_color_right: colors[3],
-  planet_color_left: colors[2],
-  planet_color_right: colors[3],
+  rocket_color_left: rocket_color[2],
+  rocket_color_right: rocket_color[3],
+  planet_color_left: planet_color[2],
+  planet_color_right: planet_color[3],
   add_aliens: true
 };
 
@@ -238,10 +250,10 @@ var INSTRUCTIONS_04 = {
   pages: instructions_04, //text from two-step-instructions.js
   show_clickable_nav: true,
   show_page_number: false,
-  rocket_color_left: colors[2],
-  rocket_color_right: colors[3],
-  planet_color_left: colors[2],
-  planet_color_right: colors[3],
+  rocket_color_left: rocket_color[2],
+  rocket_color_right: rocket_color[3],
+  planet_color_left: planet_color[2],
+  planet_color_right: planet_color[3],
   add_diamonds: true,
 };
 
@@ -250,10 +262,10 @@ var INSTRUCTIONS_05 = {
   pages: instructions_05, //text from two-step-instructions.js
   show_clickable_nav: true,
   show_page_number: false,
-  rocket_color_left: colors[2],
-  rocket_color_right: colors[3],
-  planet_color_left: colors[2],
-  planet_color_right: colors[3],
+  rocket_color_left: rocket_color[2],
+  rocket_color_right: rocket_color[3],
+  planet_color_left: planet_color[2],
+  planet_color_right: planet_color[3],
   add_rocks: true,
 };
 
@@ -262,10 +274,10 @@ var INSTRUCTIONS_06 = {
   pages: instructions_06, //text from two-step-instructions.js
   show_clickable_nav: true,
   show_page_number: false,
-  rocket_color_left: colors[2],
-  rocket_color_right: colors[3],
-  planet_color_left: colors[2],
-  planet_color_right: colors[3],
+  rocket_color_left: rocket_color[2],
+  rocket_color_right: rocket_color[3],
+  planet_color_left: planet_color[2],
+  planet_color_right: planet_color[3],
   add_aliens: true
 };
 
@@ -274,10 +286,10 @@ var INSTRUCTIONS_07 = {
   pages: instructions_07, //text from two-step-instructions.js
   show_clickable_nav: true,
   show_page_number: false,
-  rocket_color_left: colors[2],
-  rocket_color_right: colors[3],
-  planet_color_left: colors[2],
-  planet_color_right: colors[3],
+  rocket_color_left: rocket_color[2],
+  rocket_color_right: rocket_color[3],
+  planet_color_left: planet_color[2],
+  planet_color_right: planet_color[3],
   add_aliens: true
 };
 
@@ -286,10 +298,10 @@ var INSTRUCTIONS_08 = {
   pages: instructions_08, //text from two-step-instructions.js
   show_clickable_nav: true,
   show_page_number: false,
-  rocket_color_left: colors[2],
-  rocket_color_right: colors[3],
-  planet_color_left: colors[2],
-  planet_color_right: colors[3],
+  rocket_color_left: rocket_color[2],
+  rocket_color_right: rocket_color[3],
+  planet_color_left: planet_color[2],
+  planet_color_right: planet_color[3],
   add_aliens: true
 };
 
@@ -298,10 +310,10 @@ var INSTRUCTIONS_09 = {
   pages: instructions_09, //text from two-step-instructions.js
   show_clickable_nav: true,
   show_page_number: false,
-  rocket_color_left: colors[2],
-  rocket_color_right: colors[3],
-  planet_color_left: colors[2],
-  planet_color_right: colors[3],
+  rocket_color_left: rocket_color[2],
+  rocket_color_right: rocket_color[3],
+  planet_color_left: planet_color[2],
+  planet_color_right: planet_color[3],
   add_aliens: true
 };
 
@@ -310,8 +322,8 @@ var num_left = 0;
 var num_right = 0;
 var ALIEN_PRACTICE = {
   type: 'alien-practice',
-  planet_color_left: colors[2],
-  planet_color_right: colors[2]
+  planet_color_left: planet_color[2],
+  planet_color_right: planet_color[2]
 };
 
 var INSTRUCTIONS_10 = {
@@ -319,10 +331,10 @@ var INSTRUCTIONS_10 = {
   pages: instructions_10, //text from two-step-instructions.js
   show_clickable_nav: true,
   show_page_number: false,
-  rocket_color_left: colors[2],
-  rocket_color_right: colors[3],
-  planet_color_left: colors[2],
-  planet_color_right: colors[3],
+  rocket_color_left: rocket_color[2],
+  rocket_color_right: rocket_color[3],
+  planet_color_left: planet_color[2],
+  planet_color_right: planet_color[3],
   add_one_alien: true
 };
 
@@ -331,10 +343,10 @@ var INSTRUCTIONS_11 = {
   pages: instructions_11, //text from two-step-instructions.js
   show_clickable_nav: true,
   show_page_number: false,
-  rocket_color_left: colors[0],
-  rocket_color_right: colors[1],
-  planet_color_left: colors[0],
-  planet_color_right: colors[1],
+  rocket_color_left: rocket_color[0],
+  rocket_color_right: rocket_color[1],
+  planet_color_left: planet_color[0],
+  planet_color_right: planet_color[1],
 };
 
 var INSTRUCTIONS_12 = {
@@ -342,10 +354,10 @@ var INSTRUCTIONS_12 = {
   pages: instructions_12, //text from two-step-instructions.js
   show_clickable_nav: true,
   show_page_number: false,
-  rocket_color_left: colors[0],
-  rocket_color_right: colors[1],
-  planet_color_left: colors[0],
-  planet_color_right: colors[1],
+  rocket_color_left: rocket_color[0],
+  rocket_color_right: rocket_color[1],
+  planet_color_left: planet_color[0],
+  planet_color_right: planet_color[1],
 };
 
 var INSTRUCTIONS_13 = {
@@ -353,22 +365,22 @@ var INSTRUCTIONS_13 = {
   pages: instructions_13, //text from two-step-instructions.js
   show_clickable_nav: true,
   show_page_number: false,
-  rocket_color_left: colors[0],
-  rocket_color_right: colors[1],
-  planet_color_left: colors[0],
-  planet_color_right: colors[1],
+  rocket_color_left: rocket_color[0],
+  rocket_color_right: rocket_color[1],
+  planet_color_left: planet_color[0],
+  planet_color_right: planet_color[1],
 };
 
-var instructions_14 = [`Before you can ask an alien for some treasure, you will first need to travel to their planet! There are two rocketships and two planets. Most of the time, the <b>${colors[0]}</b> rocketship will go to the <b>${colors[0]}</b> planet. Most of the time the <b>${colors[1]}</b> rocketship will go to the <b>${colors[1]}</b> planet.`];
+var instructions_14 = ['Before you can ask an alien for some treasure, you will first need to travel to their planet! There are two rocketships and two planets. Each rocketship goes to one planet <b>most of the time</b>. You will need to learn from your travels which planet is the preferred destination of each rocketship. '];
 var INSTRUCTIONS_14 = {
   type: 'two-step-instructions',
   pages: instructions_14, //text from two-step-instructions.js
   show_clickable_nav: true,
   show_page_number: false,
-  rocket_color_left: colors[0],
-  rocket_color_right: colors[1],
-  planet_color_left: colors[0],
-  planet_color_right: colors[1],
+  rocket_color_left: rocket_color[0],
+  rocket_color_right: rocket_color[1],
+  planet_color_left: planet_color[0],
+  planet_color_right: planet_color[1],
   add_moons: true,
   add_rockets: true,
 };
@@ -378,10 +390,10 @@ var INSTRUCTIONS_15 = {
   pages: instructions_15, //text from two-step-instructions.js
   show_clickable_nav: true,
   show_page_number: false,
-  rocket_color_left: colors[0],
-  rocket_color_right: colors[1],
-  planet_color_left: colors[0],
-  planet_color_right: colors[1],
+  rocket_color_left: rocket_color[0],
+  rocket_color_right: rocket_color[1],
+  planet_color_left: planet_color[0],
+  planet_color_right: planet_color[1],
   add_moons: true,
   add_rockets: true,
 };
@@ -403,20 +415,20 @@ var ROCKET_PRACTICE_COMMON = {
   type: 'rocket-practice',
   common_left: true,
   common_right: true,
-  rocket_color_left: colors[0],
-  rocket_color_right: colors[1],
-  planet_color_left: colors[0],
-  planet_color_right: colors[1],
+  rocket_color_left: rocket_color[0],
+  rocket_color_right: rocket_color[1],
+  planet_color_left: planet_color[0],
+  planet_color_right: planet_color[1],
 };
 
 var ROCKET_PRACTICE_UNCOMMON = {
   type: 'rocket-practice',
   common_left: false,
   common_right: false,
-  rocket_color_left: colors[0],
-  rocket_color_right: colors[1],
-  planet_color_left: colors[0],
-  planet_color_right: colors[1],
+  rocket_color_left: rocket_color[0],
+  rocket_color_right: rocket_color[1],
+  planet_color_left: planet_color[0],
+  planet_color_right: planet_color[1],
 };
 
 var INSTRUCTIONS_17 = {
@@ -424,10 +436,10 @@ var INSTRUCTIONS_17 = {
   pages: instructions_17, //text from two-step-instructions.js
   show_clickable_nav: true,
   show_page_number: false,
-  rocket_color_left: colors[0],
-  rocket_color_right: colors[1],
-  planet_color_left: colors[0],
-  planet_color_right: colors[1],
+  rocket_color_left: rocket_color[0],
+  rocket_color_right: rocket_color[1],
+  planet_color_left: planet_color[0],
+  planet_color_right: planet_color[1],
 };
 
 var FULL_PRACTICE = {
@@ -439,10 +451,10 @@ var INSTRUCTIONS_18 = {
   pages: instructions_18, //text from two-step-instructions.js
   show_clickable_nav: true,
   show_page_number: false,
-  rocket_color_left: colors[0],
-  rocket_color_right: colors[1],
-  planet_color_left: colors[0],
-  planet_color_right: colors[1],
+  rocket_color_left: rocket_color[0],
+  rocket_color_right: rocket_color[1],
+  planet_color_left: planet_color[0],
+  planet_color_right: planet_color[1],
 };
 
 var INSTRUCTIONS = {
@@ -504,7 +516,7 @@ var COMPREHENSION_01 = {
   correct_option: comp_q1_correct,
   feedback: comp_q1_feedback,
 }
-var comp_q2 = `<p class="jspsych-survey-multi-choice-text survey-multi-choice">True or False: The <b>${colors[0]}</b> rocketship will always go to the <b>${colors[0]}</b> planet.</p>`;
+var comp_q2 = `<p class="jspsych-survey-multi-choice-text survey-multi-choice">True or False: A rocketship will always go to the same planet.</p>`;
 var COMPREHENSION_02 = {
   type: 'two-step-comprehension',
   prompt: comp_q2,
