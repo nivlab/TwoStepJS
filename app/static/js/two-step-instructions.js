@@ -21,20 +21,6 @@ jsPsych.plugins["two-step-instructions"] = (function() {
         array: true,
         description: 'Each element of the array is the content for a single page.'
       },
-      robot_runes: {
-        type: jsPsych.plugins.parameterType.STRING,
-        pretty_name: 'Robot rune',
-        array: true,
-        default: [],
-        description: 'Rune to display on robot. Should be same length as pages.'
-      },
-      scanner_colors: {
-        type: jsPsych.plugins.parameterType.HTML_STRING,
-        pretty_name: 'Scanner color',
-        array: true,
-        default: [],
-        description: 'Color of scanner light. Should be same length as pages.'
-      },
       key_forward: {
         type: jsPsych.plugins.parameterType.KEYCODE,
         pretty_name: 'Key forward',
@@ -50,37 +36,43 @@ jsPsych.plugins["two-step-instructions"] = (function() {
       add_moons: {
         type: jsPsych.plugins.parameterType.BOOL,
         pretty_name:'Do or do not draw moons?',
-        default: false,
+        default: undefined,
+        array: true,
         description: 'Decides if moons appear on this instructions slide.'
       },
       add_aliens: {
         type: jsPsych.plugins.parameterType.BOOL,
         pretty_name:'Do or do not draw aliens?',
-        default: false,
+        default: undefined,
+        array: true,
         description: 'Decides if aliens appear on this instructions slide.'
       },
       add_diamonds: {
         type: jsPsych.plugins.parameterType.BOOL,
         pretty_name:'Do or do not draw diamonds?',
-        default: false,
+        default: undefined,
+        array: true,
         description: 'Decides if diamonds appear on this instructions slide.'
       },
       add_rocks: {
         type: jsPsych.plugins.parameterType.BOOL,
         pretty_name:'Do or do not draw rocks?',
-        default: false,
+        default: undefined,
+        array: true,
         description: 'Decides if rocks appear on this instructions slide.'
       },
       add_one_alien: {
         type: jsPsych.plugins.parameterType.BOOL,
         pretty_name:'Show correct alien in practice',
-        default: false,
+        default: undefined,
+        array: true,
         description: 'Decides if that alien appears on this instructions slide.'
       },
       add_rockets: {
         type: jsPsych.plugins.parameterType.BOOL,
         pretty_name:'Show the rockets. ',
-        default: false,
+        default: undefined,
+        array: true,
         description: 'Decides if the rockets appear on this instructions slide.'
       }
     }
@@ -89,7 +81,7 @@ jsPsych.plugins["two-step-instructions"] = (function() {
   plugin.trial = function(display_element, trial) {
 
     //---------------------------------------//
-    // Define HTML.
+    // Section 1: Define HTML.
     //---------------------------------------//
 
     // Initialize HTML.
@@ -114,116 +106,86 @@ jsPsych.plugins["two-step-instructions"] = (function() {
     // Draw stars.
     new_html += '<div class="stars"></div>';
 
-    function addMoons(){
-      // Draw left moon.
-      new_html += `<div class="moon" id="moon-L" side="left" color="${trial.planet_color_left}">`;
-      new_html += '<div class="shadow"></div>';
-      new_html += '<div class="crater"></div>';
-      new_html += '</div>';
+    // Draw left moon.
+    new_html += `<div class="moon" id="moon-L" side="left" color="${trial.planet_color_left}">`;
+    new_html += '<div class="shadow"></div>';
+    new_html += '<div class="crater"></div>';
+    new_html += '</div>';
 
-      // Draw right moon.
-      new_html += `<div class="moon" id="moon-R" side="right" color="${trial.planet_color_right}">`;
-      new_html += '<div class="shadow"></div>';
-      new_html += '<div class="crater"></div>';
-      new_html += '</div>';
-    }
-
-    if (trial.add_moons == true){
-      addMoons();
-    }
+    // Draw right moon.
+    new_html += `<div class="moon" id="moon-R" side="right" color="${trial.planet_color_right}">`;
+    new_html += '<div class="shadow"></div>';
+    new_html += '<div class="crater"></div>';
+    new_html += '</div>';
 
     // End sky.
     new_html += '</div>';
 
-    function drawRockets(){
-      // Draw ground.
-      new_html += '<div class="landscape-ground" stage="1">';
-      new_html += '</div>';
+    new_html += '<div id="rockets">';
 
-      // Draw left rocket.
-      new_html += '<div class="tower" id="tower-L" side="left"><div class="arm"></div></div>';
-      new_html += '<div class="platform" id="platform-L" side="left"></div>';
-      new_html += '<div class="rocket" id="rocket-L" stage="1" side="left">';
-      new_html += '<div class="rocket-body">';
-      new_html += `<div class="rocket-window" color="${trial.rocket_color_left}"></div>`;
-      new_html += '<div class="rocket-studs"></div>';
-      new_html += `<div class="rocket-fin" side="left" color="${trial.rocket_color_left}"></div>`;
-      new_html += `<div class="rocket-fin" side="right" color="${trial.rocket_color_left}"></div>`;
-      new_html += '<div class="rocket-fire" id="fire-L"></div>';
-      new_html += '</div></div>';
+    // Draw ground.
+    new_html += '<div class="landscape-ground" stage="1">';
+    new_html += '</div>';
 
-      // Draw right rocket.
-      new_html += '<div class="tower" id="tower-R" side="right"><div class="arm"></div></div>';
-      new_html += '<div class="platform" id="platform-R" side="right"></div>';
-      new_html += '<div class="rocket" id="rocket-R" stage="1" side="right">';
-      new_html += '<div class="rocket-body">';
-      new_html += `<div class="rocket-window" color="${trial.rocket_color_right}"></div>`;
-      new_html += '<div class="rocket-studs"></div>';
-      new_html += `<div class="rocket-fin" side="left" color="${trial.rocket_color_right}"></div>`;
-      new_html += `<div class="rocket-fin" side="right" color="${trial.rocket_color_right}"></div>`;
-      new_html += '<div class="rocket-fire" id="fire-R"></div>';
-      new_html += '</div></div>';
-    }
-    if (trial.add_rockets==true){
-      drawRockets();
-    }
+    // Draw left rocket.
+    new_html += '<div class="tower" id="tower-L" side="left"><div class="arm"></div></div>';
+    new_html += '<div class="platform" id="platform-L" side="left"></div>';
+    new_html += '<div class="rocket" id="rocket-L" stage="1" side="left">';
+    new_html += '<div class="rocket-body">';
+    new_html += `<div class="rocket-window" color="${trial.rocket_color_left}"></div>`;
+    new_html += '<div class="rocket-studs"></div>';
+    new_html += `<div class="rocket-fin" side="left" color="${trial.rocket_color_left}"></div>`;
+    new_html += `<div class="rocket-fin" side="right" color="${trial.rocket_color_left}"></div>`;
+    new_html += '<div class="rocket-fire" id="fire-L"></div>';
+    new_html += '</div></div>';
 
-    function drawAliens(){
-      // Draw left alien.
-      new_html += '<div class="alien" id="alien-L" stage="2" side="left">';
-      new_html += `<img id="alien-L-img" src="../static/img/alien01-${trial.planet_color_left}.png"></img>`;
-      new_html += '</div>';
+    // Draw right rocket.
+    new_html += '<div class="tower" id="tower-R" side="right"><div class="arm"></div></div>';
+    new_html += '<div class="platform" id="platform-R" side="right"></div>';
+    new_html += '<div class="rocket" id="rocket-R" stage="1" side="right">';
+    new_html += '<div class="rocket-body">';
+    new_html += `<div class="rocket-window" color="${trial.rocket_color_right}"></div>`;
+    new_html += '<div class="rocket-studs"></div>';
+    new_html += `<div class="rocket-fin" side="left" color="${trial.rocket_color_right}"></div>`;
+    new_html += `<div class="rocket-fin" side="right" color="${trial.rocket_color_right}"></div>`;
+    new_html += '<div class="rocket-fire" id="fire-R"></div>';
+    new_html += '</div></div>';
 
-      // Draw right alien.
-      new_html += '<div class="alien" id="alien-R" stage="2" side="right">';
-      new_html += `<img id="alien-R-img" src="../static/img/alien02-${trial.planet_color_left}.png"></img>`;
-      new_html += '</div>';
-    }
-    if (trial.add_aliens == true){
-      drawAliens();
-    }
+    // Close rockets.
+    new_html += '</div>';
 
-    function drawDiamonds(){
-      // Draw diamonds.
-      new_html += '<div class="diamond" id="diamond-L" stage="1" status="instructions" side="center"></div>';
-    }
-    if (trial.add_diamonds==true){
-      drawDiamonds();
-    }
+    // Draw left alien.
+    new_html += '<div class="alien" id="alien-L" stage="2" side="left">';
+    new_html += `<img id="alien-L-img" src="../static/img/alien01-${trial.planet_color_left}.png"></img>`;
+    new_html += '</div>';
 
-    function drawRocks(){
-      new_html += '<div class="rock" id="rock-C" stage="1" status="instructions" side="center"></div>';
-    }
-    if (trial.add_rocks==true){
-      drawRocks();
-    }
+    // Draw right alien.
+    new_html += '<div class="alien" id="alien-R" stage="2" side="right">';
+    new_html += `<img id="alien-R-img" src="../static/img/alien02-${trial.planet_color_left}.png"></img>`;
+    new_html += '</div>';
 
-    function drawOneAlien(){
-      // Draw center alien.
-      new_html += '<div class="alien" id="alien-R" stage="2" side="center">';
-      new_html += `<img id="alien-R-img" src="../static/img/alien01-${trial.planet_color_left}.png"></img>`;
-      new_html += '</div>';
-    }
-    if (trial.add_one_alien==true){
-      drawOneAlien();
-    }
+    // Draw diamonds.
+    new_html += '<div class="diamond" id="diamond-L" stage="1" status="instructions" side="center"></div>';
 
-    new_html += '<div class="jspsych-instructions-nav">';
-    new_html += '<button id="jspsych-instructions-back" class="jspsych-btn" style="margin-right: 5px;">&lt; Prev</button>'; //disabled="disabled"
-    new_html += '<button id="jspsych-instructions-next" class="jspsych-btn" style="margin-left: 5px;">Next &gt;</button>';
+    // Draw rocks.
+    new_html += '<div class="rock" id="rock-C" stage="1" status="instructions" side="center"></div>';
+
+    // Draw center alien.
+    new_html += '<div class="alien" id="alien-C" stage="2" side="center">';
+    new_html += `<img id="alien-R-img" src="../static/img/alien01-${trial.planet_color_left}.png"></img>`;
     new_html += '</div>';
 
     // Close wrapper.
     new_html += '</div>';
 
-    // draw
-    display_element.innerHTML = new_html;
-
     // Draw instructions
     new_html += '<div class="instructions-box"><div class="instructions"></div></div>';
-    //
-    // // Close wrapper
-    // new_html += '</div>';
+
+    // Draw buttons
+    new_html += '<div class="jspsych-instructions-nav">';
+    new_html += '<button id="jspsych-instructions-back" class="jspsych-btn" style="position: absolute; left: 49%; bottom: 10%; -webkit-transform: translate(-100%, -50%); transform: translate(-100%, -50%)">&lt; Prev</button>'; //disabled="disabled"
+    new_html += '<button id="jspsych-instructions-next" class="jspsych-btn" style="position: absolute; left: 51%; bottom: 10%; -webkit-transform: translate(0%, -50%); transform: translate(0%, -50%)">Next &gt;</button>';
+    new_html += '</div>';
 
     // draw
     display_element.innerHTML = new_html;
@@ -254,9 +216,6 @@ jsPsych.plugins["two-step-instructions"] = (function() {
       // Update instructions text.
       display_element.querySelector('.instructions').innerHTML = `<p>${trial.pages[current_page]}</p>`;
 
-      // Update robot rune.
-      //display_element.querySelector('.rune').innerHTML = robot_runes[current_page];
-
       // Update prev button
       if (current_page != 0) {
         display_element.querySelector('#jspsych-instructions-back').disabled = false;
@@ -266,6 +225,47 @@ jsPsych.plugins["two-step-instructions"] = (function() {
       }
       // Update next button
       display_element.querySelector('#jspsych-instructions-next').addEventListener('click', btnListener);
+
+      // Update task elements
+      if (trial.add_moons[current_page]) {
+        display_element.querySelector('#moon-L').style.display = "block";
+        display_element.querySelector('#moon-R').style.display = "block";
+      } else {
+        display_element.querySelector('#moon-L').style.display = "none";
+        display_element.querySelector('#moon-R').style.display = "none";
+      }
+
+      if (trial.add_aliens[current_page]) {
+        display_element.querySelector('#alien-L').style.display = "block";
+        display_element.querySelector('#alien-R').style.display = "block";
+      } else {
+        display_element.querySelector('#alien-L').style.display = "none";
+        display_element.querySelector('#alien-R').style.display = "none";
+      }
+
+      if (trial.add_diamonds[current_page]) {
+        display_element.querySelector('#diamond-L').style.display = "block";
+      } else {
+        display_element.querySelector('#diamond-L').style.display = "none";
+      }
+
+      if (trial.add_rocks[current_page]) {
+        display_element.querySelector('#rock-C').style.display = "block";
+      } else {
+        display_element.querySelector('#rock-C').style.display = "none";
+      }
+
+      if (trial.add_one_alien[current_page]) {
+        display_element.querySelector('#alien-C').style.display = "block";
+      } else {
+        display_element.querySelector('#alien-C').style.display = "none";
+      }
+
+      if (trial.add_rockets[current_page]) {
+        display_element.querySelector('#rockets').style.display = "block";
+      } else {
+        display_element.querySelector('#rockets').style.display = "none";
+      }
 
     }
 

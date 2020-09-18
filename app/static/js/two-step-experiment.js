@@ -210,112 +210,50 @@ TWO_STEP_TRIALS_BLOCK_1.push({
   planet_color_right: planet_color[1],
 });
 
-var INSTRUCTIONS_01 = {
+var INSTRUCTIONS_PART_1 = {
   type: 'two-step-instructions',
-  pages: instructions_01, //text from two-step-instructions.js
+  pages: [
+    instructions_01,
+    instructions_02,
+    instructions_03,
+    instructions_04,
+    instructions_05,
+    instructions_06,
+    instructions_07,
+    instructions_08,
+    instructions_09,
+  ],
+  add_moons: [
+    false, true, false, false, false,
+    false, false, false, false,
+  ],
+  add_aliens: [
+    false, false, true, false, false,
+    true, true, true, true,
+  ],
+  add_diamonds: [
+    false, false, false, true, false,
+    false, false, false, false,
+  ],
+  add_rocks: [
+    false, false, false, false, true,
+    false, false, false, false,
+  ],
+  add_one_alien: [
+    false, false, false, false, false,
+    false, false, false, false,
+  ],
+  add_rockets: [
+    false, false, false, false, false,
+    false, false, false, false,
+  ],
   show_clickable_nav: true,
   show_page_number: false,
   rocket_color_left: rocket_color[2],
   rocket_color_right: rocket_color[3],
   planet_color_left: planet_color[2],
   planet_color_right: planet_color[3],
-};
-
-var INSTRUCTIONS_02 = {
-  type: 'two-step-instructions',
-  pages: instructions_02, //text from two-step-instructions.js
-  show_clickable_nav: true,
-  show_page_number: false,
-  rocket_color_left: rocket_color[2],
-  rocket_color_right: rocket_color[3],
-  planet_color_left: planet_color[2],
-  planet_color_right: planet_color[3],
-  add_moons: true
-};
-
-var INSTRUCTIONS_03 = {
-  type: 'two-step-instructions',
-  pages: instructions_03, //text from two-step-instructions.js
-  show_clickable_nav: true,
-  show_page_number: false,
-  rocket_color_left: rocket_color[2],
-  rocket_color_right: rocket_color[3],
-  planet_color_left: planet_color[2],
-  planet_color_right: planet_color[3],
-  add_aliens: true
-};
-
-var INSTRUCTIONS_04 = {
-  type: 'two-step-instructions',
-  pages: instructions_04, //text from two-step-instructions.js
-  show_clickable_nav: true,
-  show_page_number: false,
-  rocket_color_left: rocket_color[2],
-  rocket_color_right: rocket_color[3],
-  planet_color_left: planet_color[2],
-  planet_color_right: planet_color[3],
-  add_diamonds: true,
-};
-
-var INSTRUCTIONS_05 = {
-  type: 'two-step-instructions',
-  pages: instructions_05, //text from two-step-instructions.js
-  show_clickable_nav: true,
-  show_page_number: false,
-  rocket_color_left: rocket_color[2],
-  rocket_color_right: rocket_color[3],
-  planet_color_left: planet_color[2],
-  planet_color_right: planet_color[3],
-  add_rocks: true,
-};
-
-var INSTRUCTIONS_06 = {
-  type: 'two-step-instructions',
-  pages: instructions_06, //text from two-step-instructions.js
-  show_clickable_nav: true,
-  show_page_number: false,
-  rocket_color_left: rocket_color[2],
-  rocket_color_right: rocket_color[3],
-  planet_color_left: planet_color[2],
-  planet_color_right: planet_color[3],
-  add_aliens: true
-};
-
-var INSTRUCTIONS_07 = {
-  type: 'two-step-instructions',
-  pages: instructions_07, //text from two-step-instructions.js
-  show_clickable_nav: true,
-  show_page_number: false,
-  rocket_color_left: rocket_color[2],
-  rocket_color_right: rocket_color[3],
-  planet_color_left: planet_color[2],
-  planet_color_right: planet_color[3],
-  add_aliens: true
-};
-
-var INSTRUCTIONS_08 = {
-  type: 'two-step-instructions',
-  pages: instructions_08, //text from two-step-instructions.js
-  show_clickable_nav: true,
-  show_page_number: false,
-  rocket_color_left: rocket_color[2],
-  rocket_color_right: rocket_color[3],
-  planet_color_left: planet_color[2],
-  planet_color_right: planet_color[3],
-  add_aliens: true
-};
-
-var INSTRUCTIONS_09 = {
-  type: 'two-step-instructions',
-  pages: instructions_09, //text from two-step-instructions.js
-  show_clickable_nav: true,
-  show_page_number: false,
-  rocket_color_left: rocket_color[2],
-  rocket_color_right: rocket_color[3],
-  planet_color_left: planet_color[2],
-  planet_color_right: planet_color[3],
-  add_aliens: true
-};
+}
 
 //Variable to "rig" to the alient practice.
 var num_left = 0;
@@ -326,90 +264,29 @@ var ALIEN_PRACTICE = {
   planet_color_right: planet_color[2]
 };
 
-var INSTRUCTIONS_10 = {
+var INSTRUCTIONS_PART_2 = {
   type: 'two-step-instructions',
-  pages: instructions_10, //text from two-step-instructions.js
+  pages: [
+    instructions_10,
+    instructions_11,
+    instructions_12,
+    instructions_13,
+    'Before you can ask an alien for some treasure, you will first need to travel to their planet! There are two rocketships and two planets. Each rocketship goes to one planet <b>most of the time</b>. You will need to learn from your travels which planet is the preferred destination of each rocketship.',
+    instructions_15,
+  ],
+  add_aliens: [false, false, false, false, false, false],
+  add_diamonds: [false, false, false, false, false, false],
+  add_rocks: [false, false, false, false, false, false],
+  add_one_alien: [true, false, false, false, false, false],
+  add_moons: [false, false, false, false, true, true],
+  add_rockets: [false, false, false, false, true, true],
   show_clickable_nav: true,
   show_page_number: false,
   rocket_color_left: rocket_color[2],
   rocket_color_right: rocket_color[3],
   planet_color_left: planet_color[2],
   planet_color_right: planet_color[3],
-  add_one_alien: true
-};
-
-var INSTRUCTIONS_11 = {
-  type: 'two-step-instructions',
-  pages: instructions_11, //text from two-step-instructions.js
-  show_clickable_nav: true,
-  show_page_number: false,
-  rocket_color_left: rocket_color[0],
-  rocket_color_right: rocket_color[1],
-  planet_color_left: planet_color[0],
-  planet_color_right: planet_color[1],
-};
-
-var INSTRUCTIONS_12 = {
-  type: 'two-step-instructions',
-  pages: instructions_12, //text from two-step-instructions.js
-  show_clickable_nav: true,
-  show_page_number: false,
-  rocket_color_left: rocket_color[0],
-  rocket_color_right: rocket_color[1],
-  planet_color_left: planet_color[0],
-  planet_color_right: planet_color[1],
-};
-
-var INSTRUCTIONS_13 = {
-  type: 'two-step-instructions',
-  pages: instructions_13, //text from two-step-instructions.js
-  show_clickable_nav: true,
-  show_page_number: false,
-  rocket_color_left: rocket_color[0],
-  rocket_color_right: rocket_color[1],
-  planet_color_left: planet_color[0],
-  planet_color_right: planet_color[1],
-};
-
-var instructions_14 = ['Before you can ask an alien for some treasure, you will first need to travel to their planet! There are two rocketships and two planets. Each rocketship goes to one planet <b>most of the time</b>. You will need to learn from your travels which planet is the preferred destination of each rocketship. '];
-var INSTRUCTIONS_14 = {
-  type: 'two-step-instructions',
-  pages: instructions_14, //text from two-step-instructions.js
-  show_clickable_nav: true,
-  show_page_number: false,
-  rocket_color_left: rocket_color[0],
-  rocket_color_right: rocket_color[1],
-  planet_color_left: planet_color[0],
-  planet_color_right: planet_color[1],
-  add_moons: true,
-  add_rockets: true,
-};
-
-var INSTRUCTIONS_15 = {
-  type: 'two-step-instructions',
-  pages: instructions_15, //text from two-step-instructions.js
-  show_clickable_nav: true,
-  show_page_number: false,
-  rocket_color_left: rocket_color[0],
-  rocket_color_right: rocket_color[1],
-  planet_color_left: planet_color[0],
-  planet_color_right: planet_color[1],
-  add_moons: true,
-  add_rockets: true,
-};
-
-// var INSTRUCTIONS_16 = {
-//   type: 'two-step-instructions',
-//   pages: instructions_16, //text from two-step-instructions.js
-//   show_clickable_nav: true,
-//   show_page_number: false,
-//   rocket_color_left: colors[0],
-//   rocket_color_right: colors[1],
-//   planet_color_left: colors[0],
-//   planet_color_right: colors[1],
-//   add_moons: true,
-//   add_rockets: true,
-// };
+}
 
 var ROCKET_PRACTICE_COMMON = {
   type: 'rocket-practice',
@@ -431,16 +308,24 @@ var ROCKET_PRACTICE_UNCOMMON = {
   planet_color_right: planet_color[1],
 };
 
-var INSTRUCTIONS_17 = {
+var INSTRUCTIONS_PART_3 = {
   type: 'two-step-instructions',
-  pages: instructions_17, //text from two-step-instructions.js
+  pages: [
+    instructions_17
+  ],
+  add_aliens: [false],
+  add_diamonds: [false],
+  add_rocks: [false],
+  add_one_alien: [false],
+  add_moons: [false],
+  add_rockets: [false],
   show_clickable_nav: true,
   show_page_number: false,
   rocket_color_left: rocket_color[0],
   rocket_color_right: rocket_color[1],
   planet_color_left: planet_color[0],
   planet_color_right: planet_color[1],
-};
+}
 
 var FULL_PRACTICE = {
   type: 'temp'
@@ -459,15 +344,7 @@ var INSTRUCTIONS_18 = {
 
 var INSTRUCTIONS = {
   timeline: [
-    INSTRUCTIONS_01,
-    INSTRUCTIONS_02,
-    INSTRUCTIONS_03,
-    INSTRUCTIONS_04,
-    INSTRUCTIONS_05,
-    INSTRUCTIONS_06,
-    INSTRUCTIONS_07,
-    INSTRUCTIONS_08,
-    INSTRUCTIONS_09,
+    INSTRUCTIONS_PART_1,
     ALIEN_PRACTICE,  //x20 alien practice
     ALIEN_PRACTICE,
     ALIEN_PRACTICE,
@@ -488,12 +365,7 @@ var INSTRUCTIONS = {
     ALIEN_PRACTICE,
     ALIEN_PRACTICE,
     ALIEN_PRACTICE,
-    INSTRUCTIONS_10,
-    INSTRUCTIONS_11,
-    INSTRUCTIONS_12,
-    INSTRUCTIONS_13,
-    INSTRUCTIONS_14,
-    INSTRUCTIONS_15,
+    INSTRUCTIONS_PART_2,
     // INSTRUCTIONS_16 // removed instructions for rocket only practice
     // ROCKET_PRACTICE_COMMON, // x10 rocket practice
     // ROCKET_PRACTICE_COMMON, // rocket practice removed because encourages planning
@@ -505,7 +377,7 @@ var INSTRUCTIONS = {
     // ROCKET_PRACTICE_COMMON,
     // ROCKET_PRACTICE_COMMON,
     // ROCKET_PRACTICE_COMMON,
-    INSTRUCTIONS_17
+    INSTRUCTIONS_PART_3
 ]};
 
 var COMPREHENSION_01 = {
@@ -525,16 +397,6 @@ var COMPREHENSION_02 = {
   correct_option: comp_q2_correct,
   feedback: comp_q2_feedback,
 }
-
-// REMOVED DUE TO NON-JUDGMENTAL WORDING CHANGE (MALFUNCTION WORDING REMOVED)
-// var COMPREHENSION_03 = {
-//   type: 'two-step-comprehension',
-//   prompt: comp_q3,
-//   options: [comp_q3_option1,comp_q3_option2],
-//   preamble: 'Question 3',
-//   correct_option: comp_q3_correct,
-//   feedback: comp_q3_feedback
-// }
 
 var COMPREHENSION_CHECK = {
   timeline: [
