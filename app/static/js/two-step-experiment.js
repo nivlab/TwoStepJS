@@ -37,7 +37,7 @@ function getFormattedDate() {
 var subject_id = {
     type: 'survey-text',
     questions: [{
-      prompt: "Please enter the subject ID.",
+      prompt: subject_id_prompt,
     }],
     on_finish: function(data){
       sub_num = JSON.parse(data.responses)["Q0"];

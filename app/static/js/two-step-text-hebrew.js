@@ -1,6 +1,10 @@
 
 //colors must be determined to display in the text
 
+var continue_label = 'המשך';
+
+var subject_id_prompt = '';
+
 var instructions_01 = ['ברוכים הבאים למשחק חיפוש המטמון! כאן תחפשו מטמון בחלל החיצון. תוכלו להשתמש במקשי החיצים כדי ללכת קדימה או אחורה'];
 
 var instructions_02 = ['במשחק, תוכלו לחפש מטמון באחד משני כוכבים'];
