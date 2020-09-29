@@ -24,13 +24,13 @@ jsPsych.plugins["two-step-instructions"] = (function() {
       key_forward: {
         type: jsPsych.plugins.parameterType.KEYCODE,
         pretty_name: 'Key forward',
-        default: 'rightarrow',
+        default: 'leftarrow',
         description: 'The key the subject can press in order to advance to the next page.'
       },
       key_backward: {
         type: jsPsych.plugins.parameterType.KEYCODE,
         pretty_name: 'Key backward',
-        default: 'leftarrow',
+        default: 'rightarrow',
         description: 'The key that the subject can press to return to the previous page.'
       },
       add_moons: {
@@ -183,8 +183,8 @@ jsPsych.plugins["two-step-instructions"] = (function() {
 
     // Draw buttons
     new_html += '<div class="jspsych-instructions-nav">';
-    new_html += '<button id="jspsych-instructions-back" class="jspsych-btn" style="position: absolute; left: 49%; bottom: 10%; -webkit-transform: translate(-100%, -50%); transform: translate(-100%, -50%)">&lt;'+ next_label + '</button>'; //disabled="disabled"
-    new_html += '<button id="jspsych-instructions-next" class="jspsych-btn" style="position: absolute; left: 51%; bottom: 10%; -webkit-transform: translate(0%, -50%); transform: translate(0%, -50%)">' + previous_label + '&gt;</button>';
+    new_html += '<button id="jspsych-instructions-next" class="jspsych-btn" style="position: absolute; left: 49%; bottom: 10%; -webkit-transform: translate(-100%, -50%); transform: translate(-100%, -50%)">&lt;'+ next_label + '</button>'; //disabled="disabled"
+    new_html += '<button id="jspsych-instructions-back" class="jspsych-btn" style="position: absolute; left: 51%; bottom: 10%; -webkit-transform: translate(0%, -50%); transform: translate(0%, -50%)">' + previous_label + '&gt;</button>';
     new_html += '</div>';
 
     // draw

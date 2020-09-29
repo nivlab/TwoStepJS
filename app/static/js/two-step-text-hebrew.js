@@ -5,7 +5,7 @@ var continue_label = 'המשך';
 
 var next_label = 'הבא';
 
-var previous_label = '';
+var previous_label = "קודם";
 
 var subject_id_prompt = "נא להכניס מספר נבדק כאן";
 
