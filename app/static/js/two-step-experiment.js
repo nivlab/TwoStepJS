@@ -100,7 +100,7 @@ var TWO_STEP_PRACTICE         = [];
 // 200 trials total
 // 20 practice
 // 180 in blocks
-for (var i=0; i<20; i++) {//i<200
+for (var i=0; i<200; i++) {//i<200
 var trial = null;
   // Define trials.
   // flip left and right rocket colors
@@ -186,12 +186,12 @@ var trial = null;
 
   // Append trial.
   //20 practice trials
-  if (i<2){//i<20
+  if (i<20){//i<20
     TWO_STEP_PRACTICE.push(trial);
   }
 
-  // 90 real trials for the first block
-  else if (i < 4){ // i<110
+  // 110-20=90 real trials for the first block
+  else if (i < 110){ // i<110
      TWO_STEP_TRIALS_BLOCK_1.push(trial);
   }
 
@@ -363,24 +363,24 @@ var INSTRUCTIONS = {
     INSTRUCTIONS_PART_1,
     ALIEN_PRACTICE,  //x20 alien practice
     ALIEN_PRACTICE,
-    // ALIEN_PRACTICE,
-    // ALIEN_PRACTICE,
-    // ALIEN_PRACTICE,
-    // ALIEN_PRACTICE,
-    // ALIEN_PRACTICE,
-    // ALIEN_PRACTICE,
-    // ALIEN_PRACTICE,
-    // ALIEN_PRACTICE,
-    // ALIEN_PRACTICE,
-    // ALIEN_PRACTICE,
-    // ALIEN_PRACTICE,
-    // ALIEN_PRACTICE,
-    // ALIEN_PRACTICE,
-    // ALIEN_PRACTICE,
-    // ALIEN_PRACTICE,
-    // ALIEN_PRACTICE,
-    // ALIEN_PRACTICE,
-    // ALIEN_PRACTICE,
+    ALIEN_PRACTICE,
+    ALIEN_PRACTICE,
+    ALIEN_PRACTICE,
+    ALIEN_PRACTICE,
+    ALIEN_PRACTICE,
+    ALIEN_PRACTICE,
+    ALIEN_PRACTICE,
+    ALIEN_PRACTICE,
+    ALIEN_PRACTICE,
+    ALIEN_PRACTICE,
+    ALIEN_PRACTICE,
+    ALIEN_PRACTICE,
+    ALIEN_PRACTICE,
+    ALIEN_PRACTICE,
+    ALIEN_PRACTICE,
+    ALIEN_PRACTICE,
+    ALIEN_PRACTICE,
+    ALIEN_PRACTICE,
     INSTRUCTIONS_PART_2,
     // INSTRUCTIONS_16 // removed instructions for rocket only practice
     // ROCKET_PRACTICE_COMMON, // x10 rocket practice
