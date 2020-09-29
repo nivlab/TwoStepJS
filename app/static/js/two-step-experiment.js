@@ -36,8 +36,9 @@ function getFormattedDate() {
 }
 var subject_id = {
     type: 'survey-text',
+    button_label: continue_label,
     questions: [{
-      prompt: "Please enter the subject ID.",
+      prompt: subject_id_prompt,
     }],
     on_finish: function(data){
       sub_num = JSON.parse(data.responses)["Q0"];
@@ -279,7 +280,7 @@ var INSTRUCTIONS_PART_2 = {
     instructions_11,
     instructions_12,
     instructions_13,
-    'Before you can ask an alien for some treasure, you will first need to travel to their planet! There are two rocketships and two planets. Each rocketship goes to one planet <b>most of the time</b>. You will need to learn from your travels which planet is the preferred destination of each rocketship.',
+    instructions_14,
     instructions_15,
   ],
   add_aliens: [false, false, false, false, false, false],
@@ -360,6 +361,7 @@ var INSTRUCTIONS_18 = {
 
 var INSTRUCTIONS = {
   timeline: [
+<<<<<<< HEAD
     INSTRUCTIONS_PART_1,
     ALIEN_PRACTICE,  //x20 alien practice
     ALIEN_PRACTICE,
@@ -381,6 +383,29 @@ var INSTRUCTIONS = {
     ALIEN_PRACTICE,
     ALIEN_PRACTICE,
     ALIEN_PRACTICE,
+=======
+    // INSTRUCTIONS_PART_1,
+    // ALIEN_PRACTICE,  //x20 alien practice
+    // ALIEN_PRACTICE,
+    // ALIEN_PRACTICE,
+    // ALIEN_PRACTICE,
+    // ALIEN_PRACTICE,
+    // ALIEN_PRACTICE,
+    // ALIEN_PRACTICE,
+    // ALIEN_PRACTICE,
+    // ALIEN_PRACTICE,
+    // ALIEN_PRACTICE,
+    // ALIEN_PRACTICE,
+    // ALIEN_PRACTICE,
+    // ALIEN_PRACTICE,
+    // ALIEN_PRACTICE,
+    // ALIEN_PRACTICE,
+    // ALIEN_PRACTICE,
+    // ALIEN_PRACTICE,
+    // ALIEN_PRACTICE,
+    // ALIEN_PRACTICE,
+    // ALIEN_PRACTICE,
+>>>>>>> hebrew-link-navigable-instr
     INSTRUCTIONS_PART_2,
     // INSTRUCTIONS_16 // removed instructions for rocket only practice
     // ROCKET_PRACTICE_COMMON, // x10 rocket practice
@@ -405,6 +430,7 @@ var COMPREHENSION_01 = {
   feedback: comp_q1_feedback,
   correct_text: correct_text
 }
+
 var comp_q2 = `<p class="jspsych-survey-multi-choice-text survey-multi-choice">True or False: A rocketship will always go to the same planet.</p>`;
 var COMPREHENSION_02 = {
   type: 'two-step-comprehension',
