@@ -3,7 +3,11 @@
 
 var continue_label = 'המשך';
 
-var subject_id_prompt = '';
+var next_label = 'הבא';
+
+var previous_label = '';
+
+var subject_id_prompt = "נא להכניס מספר נבדק כאן";
 
 var instructions_01 = ['ברוכים הבאים למשחק חיפוש המטמון! כאן תחפשו מטמון בחלל החיצון. תוכלו להשתמש במקשי החיצים כדי ללכת קדימה או אחורה'];
 
