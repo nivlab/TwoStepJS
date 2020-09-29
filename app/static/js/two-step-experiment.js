@@ -100,7 +100,7 @@ var TWO_STEP_PRACTICE         = [];
 // 200 trials total
 // 20 practice
 // 180 in blocks
-for (var i=0; i<200; i++) {
+for (var i=0; i<20; i++) {//i<200
 var trial = null;
   // Define trials.
   // flip left and right rocket colors
@@ -186,12 +186,12 @@ var trial = null;
 
   // Append trial.
   //20 practice trials
-  if (i<20){
+  if (i<2){//i<20
     TWO_STEP_PRACTICE.push(trial);
   }
 
   // 90 real trials for the first block
-  else if (i < 110){
+  else if (i < 4){ // i<110
      TWO_STEP_TRIALS_BLOCK_1.push(trial);
   }
 
@@ -201,14 +201,22 @@ var trial = null;
 }
 TWO_STEP_TRIALS_BLOCK_1.push({
   type: 'two-step-instructions',
-  pages: block_end, //text from two-step-instructions.js
+  pages: [
+    block_end
+  ],
+  add_aliens: [false],
+  add_diamonds: [false],
+  add_rocks: [false],
+  add_one_alien: [false],
+  add_moons: [false],
+  add_rockets: [false],
   show_clickable_nav: true,
   show_page_number: false,
   rocket_color_left: rocket_color[0],
   rocket_color_right: rocket_color[1],
   planet_color_left: planet_color[0],
   planet_color_right: planet_color[1],
-});
+})
 
 var INSTRUCTIONS_PART_1 = {
   type: 'two-step-instructions',
@@ -333,38 +341,46 @@ var FULL_PRACTICE = {
 
 var INSTRUCTIONS_18 = {
   type: 'two-step-instructions',
-  pages: instructions_18, //text from two-step-instructions.js
+  pages: [
+    instructions_18
+  ],
+  add_aliens: [false],
+  add_diamonds: [false],
+  add_rocks: [false],
+  add_one_alien: [false],
+  add_moons: [false],
+  add_rockets: [false],
   show_clickable_nav: true,
   show_page_number: false,
   rocket_color_left: rocket_color[0],
   rocket_color_right: rocket_color[1],
   planet_color_left: planet_color[0],
   planet_color_right: planet_color[1],
-};
+}
 
 var INSTRUCTIONS = {
   timeline: [
     INSTRUCTIONS_PART_1,
     ALIEN_PRACTICE,  //x20 alien practice
     ALIEN_PRACTICE,
-    ALIEN_PRACTICE,
-    ALIEN_PRACTICE,
-    ALIEN_PRACTICE,
-    ALIEN_PRACTICE,
-    ALIEN_PRACTICE,
-    ALIEN_PRACTICE,
-    ALIEN_PRACTICE,
-    ALIEN_PRACTICE,
-    ALIEN_PRACTICE,
-    ALIEN_PRACTICE,
-    ALIEN_PRACTICE,
-    ALIEN_PRACTICE,
-    ALIEN_PRACTICE,
-    ALIEN_PRACTICE,
-    ALIEN_PRACTICE,
-    ALIEN_PRACTICE,
-    ALIEN_PRACTICE,
-    ALIEN_PRACTICE,
+    // ALIEN_PRACTICE,
+    // ALIEN_PRACTICE,
+    // ALIEN_PRACTICE,
+    // ALIEN_PRACTICE,
+    // ALIEN_PRACTICE,
+    // ALIEN_PRACTICE,
+    // ALIEN_PRACTICE,
+    // ALIEN_PRACTICE,
+    // ALIEN_PRACTICE,
+    // ALIEN_PRACTICE,
+    // ALIEN_PRACTICE,
+    // ALIEN_PRACTICE,
+    // ALIEN_PRACTICE,
+    // ALIEN_PRACTICE,
+    // ALIEN_PRACTICE,
+    // ALIEN_PRACTICE,
+    // ALIEN_PRACTICE,
+    // ALIEN_PRACTICE,
     INSTRUCTIONS_PART_2,
     // INSTRUCTIONS_16 // removed instructions for rocket only practice
     // ROCKET_PRACTICE_COMMON, // x10 rocket practice
@@ -387,6 +403,7 @@ var COMPREHENSION_01 = {
   preamble: 'Question 1',
   correct_option: comp_q1_correct,
   feedback: comp_q1_feedback,
+  correct_text: correct_text
 }
 var comp_q2 = `<p class="jspsych-survey-multi-choice-text survey-multi-choice">True or False: A rocketship will always go to the same planet.</p>`;
 var COMPREHENSION_02 = {
@@ -396,6 +413,7 @@ var COMPREHENSION_02 = {
   preamble: 'Question 2',
   correct_option: comp_q2_correct,
   feedback: comp_q2_feedback,
+  correct_text: correct_text
 }
 
 var COMPREHENSION_CHECK = {
@@ -407,10 +425,22 @@ var COMPREHENSION_CHECK = {
 
 var INSTRUCTIONS_19 = {
   type: 'two-step-instructions',
-  pages: instructions_19, //text from two-step-instructions.js
+  pages: [
+    instructions_19
+  ],
+  add_aliens: [false],
+  add_diamonds: [false],
+  add_rocks: [false],
+  add_one_alien: [false],
+  add_moons: [false],
+  add_rockets: [false],
   show_clickable_nav: true,
   show_page_number: false,
-};
+  rocket_color_left: rocket_color[0],
+  rocket_color_right: rocket_color[1],
+  planet_color_left: planet_color[0],
+  planet_color_right: planet_color[1],
+}
 
 var DEMO = {type: 'survey-demo'};
 var DEBRIEF = {type: 'survey-debrief'};

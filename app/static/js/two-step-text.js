@@ -40,6 +40,7 @@ var instructions_18 = ['Great job! This game can be hard, so you will need to co
 // var temp = ['שלום'];
 
 // Comprehension check questions
+correct_text = "Correct!";
 
 // Question 1
 var comp_q1 = '<p class="jspsych-survey-multi-choice-text survey-multi-choice">True or False: The aliens slowly change how often they give you treasure over time. If an alien is likely to give you treasure right now, it might become less likely to give you treasure in the future. If an alien is unlikely to give you treasure right now, it might become more likely to give you treasure in the future. While the aliens change how likely they are to give you treasure, they will only change slowly. </p>';

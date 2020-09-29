@@ -124,12 +124,12 @@ jsPsych.plugins['two-step-comprehension'] = (function() {
 
       // On change, find which item is checked.
       var val = display_element.querySelector('#jspsych-survey-multi-choice-0 input:checked').value;
-      
+
       // Validation
       if (val === trial.correct_option) {
 
         // Update text
-        Q.innerHTML = "";
+        Q.innerHTML = trial.correct_text;
         Q.className = "valid";
 
         //Enable the next button
