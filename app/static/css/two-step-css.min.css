@@ -514,6 +514,11 @@
   width: 100%;
   object-fit: contain;
 }
+
+.practice-alien img {
+  filter: grayscale(100%);
+}
+
 .diamond {
   position: absolute;
   top: 50%;

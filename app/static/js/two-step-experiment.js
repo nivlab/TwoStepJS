@@ -361,7 +361,7 @@ var INSTRUCTIONS_18 = {
 
 var INSTRUCTIONS = {
   timeline: [
-    INSTRUCTIONS_PART_1,
+    // INSTRUCTIONS_PART_1,
     ALIEN_PRACTICE,  //x20 alien practice
     ALIEN_PRACTICE,
     // ALIEN_PRACTICE,

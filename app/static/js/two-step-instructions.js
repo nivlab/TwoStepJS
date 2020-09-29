@@ -171,7 +171,7 @@ jsPsych.plugins["two-step-instructions"] = (function() {
     new_html += '<div class="rock" id="rock-C" stage="1" status="instructions" side="center"></div>';
 
     // Draw center alien.
-    new_html += '<div class="alien" id="alien-C" stage="2" side="center">';
+    new_html += '<div class="alien practice-alien" id="alien-C" stage="2" side="center">';
     new_html += `<img id="alien-R-img" src="../static/img/alien01-${trial.planet_color_left}.png"></img>`;
     new_html += '</div>';
 
