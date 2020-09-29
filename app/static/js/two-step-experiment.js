@@ -36,6 +36,7 @@ function getFormattedDate() {
 }
 var subject_id = {
     type: 'survey-text',
+    button_label: continue_label,
     questions: [{
       prompt: subject_id_prompt,
     }],
