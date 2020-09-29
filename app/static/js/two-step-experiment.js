@@ -361,7 +361,6 @@ var INSTRUCTIONS_18 = {
 
 var INSTRUCTIONS = {
   timeline: [
-<<<<<<< HEAD
     INSTRUCTIONS_PART_1,
     ALIEN_PRACTICE,  //x20 alien practice
     ALIEN_PRACTICE,
@@ -383,29 +382,6 @@ var INSTRUCTIONS = {
     ALIEN_PRACTICE,
     ALIEN_PRACTICE,
     ALIEN_PRACTICE,
-=======
-    // INSTRUCTIONS_PART_1,
-    // ALIEN_PRACTICE,  //x20 alien practice
-    // ALIEN_PRACTICE,
-    // ALIEN_PRACTICE,
-    // ALIEN_PRACTICE,
-    // ALIEN_PRACTICE,
-    // ALIEN_PRACTICE,
-    // ALIEN_PRACTICE,
-    // ALIEN_PRACTICE,
-    // ALIEN_PRACTICE,
-    // ALIEN_PRACTICE,
-    // ALIEN_PRACTICE,
-    // ALIEN_PRACTICE,
-    // ALIEN_PRACTICE,
-    // ALIEN_PRACTICE,
-    // ALIEN_PRACTICE,
-    // ALIEN_PRACTICE,
-    // ALIEN_PRACTICE,
-    // ALIEN_PRACTICE,
-    // ALIEN_PRACTICE,
-    // ALIEN_PRACTICE,
->>>>>>> hebrew-link-navigable-instr
     INSTRUCTIONS_PART_2,
     // INSTRUCTIONS_16 // removed instructions for rocket only practice
     // ROCKET_PRACTICE_COMMON, // x10 rocket practice
