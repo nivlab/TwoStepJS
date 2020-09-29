@@ -405,6 +405,7 @@ var COMPREHENSION_01 = {
   feedback: comp_q1_feedback,
   correct_text: correct_text
 }
+
 var comp_q2 = `<p class="jspsych-survey-multi-choice-text survey-multi-choice">True or False: A rocketship will always go to the same planet.</p>`;
 var COMPREHENSION_02 = {
   type: 'two-step-comprehension',
