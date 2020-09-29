@@ -280,7 +280,7 @@ var INSTRUCTIONS_PART_2 = {
     instructions_11,
     instructions_12,
     instructions_13,
-    'Before you can ask an alien for some treasure, you will first need to travel to their planet! There are two rocketships and two planets. Each rocketship goes to one planet <b>most of the time</b>. You will need to learn from your travels which planet is the preferred destination of each rocketship.',
+    instructions_14,
     instructions_15,
   ],
   add_aliens: [false, false, false, false, false, false],
@@ -361,9 +361,9 @@ var INSTRUCTIONS_18 = {
 
 var INSTRUCTIONS = {
   timeline: [
-    INSTRUCTIONS_PART_1,
-    ALIEN_PRACTICE,  //x20 alien practice
-    ALIEN_PRACTICE,
+    // INSTRUCTIONS_PART_1,
+    // ALIEN_PRACTICE,  //x20 alien practice
+    // ALIEN_PRACTICE,
     // ALIEN_PRACTICE,
     // ALIEN_PRACTICE,
     // ALIEN_PRACTICE,
