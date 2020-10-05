@@ -256,6 +256,10 @@ var INSTRUCTIONS_PART_1 = {
     false, false, false, false, false,
     false, false, false, false,
   ],
+  practice_alien: [
+    false, true, true, false, false,
+    false, false, false, false,
+  ],
   show_clickable_nav: true,
   show_page_number: false,
   rocket_color_left: rocket_color[2],
@@ -361,7 +365,7 @@ var INSTRUCTIONS_18 = {
 
 var INSTRUCTIONS = {
   timeline: [
-    // INSTRUCTIONS_PART_1,
+    INSTRUCTIONS_PART_1,
     ALIEN_PRACTICE,  //x20 alien practice
     ALIEN_PRACTICE,
     // ALIEN_PRACTICE,

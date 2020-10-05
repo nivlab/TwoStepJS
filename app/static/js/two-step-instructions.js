@@ -40,6 +40,11 @@ jsPsych.plugins["two-step-instructions"] = (function() {
         array: true,
         description: 'Decides if moons appear on this instructions slide.'
       },
+      practice_alien: {
+        type: jsPsych.plugins.parameterType.BOOL,
+        pretty_name: 'Make the alien greyscale for practice.',
+        default: false,
+      },
       add_aliens: {
         type: jsPsych.plugins.parameterType.BOOL,
         pretty_name:'Do or do not draw aliens?',
@@ -155,9 +160,24 @@ jsPsych.plugins["two-step-instructions"] = (function() {
     new_html += '</div>';
 
     // Draw left alien.
-    new_html += '<div class="alien" id="alien-L" stage="2" side="left">';
-    new_html += `<img id="alien-L-img" src="../static/img/alien01-${trial.planet_color_left}.png"></img>`;
-    new_html += '</div>';
+
+
+    if (trial.practice_alien[current_page]){
+      // Draw left alien.
+      new_html += '<div span class="alien practice-alien" id="alien-L" stage="2" side="left">';
+      new_html += `<img id="alien-L-img" src="../static/img/alien01-${trial.planet_color_left}.png"></img>`;
+      new_html += '</div>';
+      console.log('grayscale attempt');
+    }
+
+    else{
+      new_html += '<div class="alien" id="alien-L" stage="2" side="left">';
+      new_html += `<img id="alien-L-img" src="../static/img/alien01-${trial.planet_color_left}.png"></img>`;
+      new_html += '</div>';
+      console.log('else');
+    }
+
+
 
     // Draw right alien.
     new_html += '<div class="alien" id="alien-R" stage="2" side="right">';

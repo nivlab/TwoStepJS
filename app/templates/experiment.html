@@ -12,7 +12,7 @@
   <script src="../static/lib/jspsych-6.1.0/jspsych.js"></script>
 
   <!-- Load experiment -->
-<script src="../static/js/two-step-text.js" type="text/javascript"></script>
+<script src="../static/js/two-step-text-hebrew.js" type="text/javascript"></script>
   <!-- Both for English and Hebrew -->
   <script src="../static/js/two-step-drifts.js" type="text/javascript"></script>
   <script src="../static/js/two-step-experiment.js" type="text/javascript"></script>
@@ -21,9 +21,9 @@
   <script src="../static/js/two-step-comprehension.js" type="text/javascript"></script>
 
   <!-- Load jsPsych plug-ins -->
-  <script src="../static/js/jspsych-survey-debrief.js" type="text/javascript"></script>
-  <script src="../static/js/two-step-instructions.js" type="text/javascript"></script>
-  <script src="../static/js/two-step-instructions.js" type="text/javascript"></script>
+  <script src="../static/js/jspsych-survey-debrief-hebrew.js" type="text/javascript"></script>
+  <script src="../static/js/two-step-instructions-hebrew.js" type="text/javascript"></script>
+  <script src="../static/js/two-step-instructions-hebrew.js" type="text/javascript"></script>
   <!-- Both for English and Hebrew -->
   <script src="../static/js/jspsych-pass-data.js" type="text/javascript"></script>
   <script src="../static/js/jspsych-reject-data.js" type="text/javascript"></script>
@@ -98,7 +98,7 @@
   // Add trials to the TIMELINE
   timeline = timeline.concat(TWO_STEP_TRIALS_BLOCK_1);
   timeline = timeline.concat(TWO_STEP_TRIALS_BLOCK_2);
-  timeline = timeline.concat(DEMO);
+  // timeline = timeline.concat(DEMO);
   timeline = timeline.concat(DEBRIEF);
 
   jsPsych.init({
