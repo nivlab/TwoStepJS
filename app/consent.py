@@ -20,9 +20,11 @@ def consent():
         ## Update participant metadata.
         session['WARNING'] = "Revisited consent form."
         write_metadata(session, ['WARNING'], 'a')
-
+        #GEHA LINK: redirect to consent instead
+        return render_template('consent.html')
         ## Redirect participant to alert page.
-        return redirect(url_for('alert.alert'))
+
+        #return redirect(url_for('alert.alert'))
 
     ## Case 3: repeat visit, previous non-consent.
     else:
@@ -31,8 +33,10 @@ def consent():
         session['WARNING'] = "Revisited consent form."
         write_metadata(session, ['WARNING'], 'a')
 
+        #GEHA LINK: always direct to consent form
+        return render_template('consent.html')
         ## Redirect participant to error (decline consent).
-        return redirect(url_for('error.error', errornum=1003))
+        #return redirect(url_for('error.error', errornum=1003))
 
 
 @bp.route('/consent', methods=['POST'])
