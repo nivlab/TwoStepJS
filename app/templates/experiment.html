@@ -1,21 +1,38 @@
 <!DOCTYPE html>
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta content="utf-8" http-equiv="encoding">
 <html>
 <head>
   <title>Space Trading</title>
+
+
 
   <!-- Load libraries -->
   <script src="../static/lib/jquery-3.3.1/jquery.min.js"></script>
   <script src="../static/lib/jspsych-6.1.0/jspsych.js"></script>
 
   <!-- Load experiment -->
+<script src="../static/js/two-step-text.js" type="text/javascript"></script>
+  <!-- Both for English and Hebrew -->
   <script src="../static/js/two-step-drifts.js" type="text/javascript"></script>
   <script src="../static/js/two-step-experiment.js" type="text/javascript"></script>
+  <script src="../static/js/alien-practice.js" type="text/javascript"></script>
+  <script src="../static/js/rocket-practice.js" type="text/javascript"></script>
+  <script src="../static/js/two-step-comprehension.js" type="text/javascript"></script>
 
   <!-- Load jsPsych plug-ins -->
+  <script src="../static/js/jspsych-survey-debrief.js" type="text/javascript"></script>
+  <script src="../static/js/two-step-instructions.js" type="text/javascript"></script>
+  <script src="../static/js/two-step-instructions.js" type="text/javascript"></script>
+  <!-- Both for English and Hebrew -->
   <script src="../static/js/jspsych-pass-data.js" type="text/javascript"></script>
   <script src="../static/js/jspsych-reject-data.js" type="text/javascript"></script>
   <script src="../static/js/jspsych-two-step.js" type="text/javascript"></script>
+  <script src="../static/js/jspsych-survey-demo.js" type="text/javascript"></script>
   <script src="../static/lib/jspsych-6.1.0/plugins/jspsych-survey-likert.js"></script>
+  <script src="../static/lib/jspsych-6.1.0/plugins/jspsych-html-keyboard-response.js"></script>
+  <script src="../static/lib/jspsych-6.1.0/plugins/jspsych-survey-text.js"></script>
+
 
   <!-- Load CSS styles -->
   <link href="../static/lib/jspsych-6.1.0/css/jspsych.css" rel="stylesheet" type="text/css"></link>
@@ -30,6 +47,7 @@
     task_version: '0.1',
   });
 
+  // TODO: add rock pic to this
   // Define images to preload.
   preload_images = [
     '../static/img/background-stars.png',
@@ -53,9 +71,35 @@
     '../static/img/alien04-purple.png'
   ]
 
-  // Define timeline.
+
+  // Define example trial.
+  //moved this line to the text file
+  //var rockets = jsPsych.randomization.shuffle(['red','blue']);
+
+  // Define timeline, blocks, and number of trials in a block.
   var timeline = [];
-  timeline = timeline.concat(two_step_trials.slice(0,1));
+
+  // Total number of blocks
+  var num_blocks = 3;
+
+  // Number of trials in each block
+  var block_len = 2; //in Val's version there are 33 trials per block (99 total)
+
+  // ADDING TRIALS TO THE TIMELINE
+
+  // Add instructions for the task_version
+  // timeline = timeline.concat(subject_id);
+  timeline = timeline.concat(INSTRUCTIONS);
+  timeline = timeline.concat(TWO_STEP_PRACTICE);
+  timeline = timeline.concat(INSTRUCTIONS_18);
+  timeline = timeline.concat(COMPREHENSION_CHECK);
+  timeline = timeline.concat(INSTRUCTIONS_19);
+
+  // Add trials to the TIMELINE
+  timeline = timeline.concat(TWO_STEP_TRIALS_BLOCK_1);
+  timeline = timeline.concat(TWO_STEP_TRIALS_BLOCK_2);
+  timeline = timeline.concat(DEMO);
+  timeline = timeline.concat(DEBRIEF);
 
   jsPsych.init({
     timeline: timeline,
@@ -68,10 +112,10 @@
       jsPsych.data.get().addToLast({interactions: interaction_data.json()});
 
       // Display jsPsych data in viewport.
-      jsPsych.data.displayData();
+      //jsPsych.data.displayData();
 
       // Save complete dataset to disk.
-      // pass_data("{{workerId}}", "{{assignmentId}}", "{{hitId}}",  "{{a}}", "{{tp_a}}", "{{b}}", "{{tp_b}}", "{{c}}", "{{tp_c}}");
+      pass_data("{{workerId}}", "{{assignmentId}}", "{{hitId}}",  "{{a}}", "{{tp_a}}", "{{b}}", "{{tp_b}}", "{{c}}", "{{tp_c}}");
 
     }
   })

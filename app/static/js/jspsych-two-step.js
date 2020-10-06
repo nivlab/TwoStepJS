@@ -13,6 +13,30 @@ jsPsych.plugins["two-step"] = (function() {
     name: 'two-step',
     description: '',
     parameters: {
+      alien_left_1: {
+        type: jsPsych.plugins.parameterType.BOOL,
+        pretty_name: 'Alien 1',
+        default: true,
+        description: ''
+      },
+      alien_left_2: {
+        type: jsPsych.plugins.parameterType.BOOL,
+        pretty_name: 'Alien 2',
+        default: true,
+        description: ''
+      },
+      alien_right_1: {
+        type: jsPsych.plugins.parameterType.BOOL,
+        pretty_name: 'Alien 3',
+        default: true,
+        description: ''
+      },
+      alien_right_2: {
+        type: jsPsych.plugins.parameterType.BOOL,
+        pretty_name: 'Alien 4',
+        default: true,
+        description: ''
+      },
       common_left: {
         type: jsPsych.plugins.parameterType.BOOL,
         pretty_name: 'Common left',
@@ -32,7 +56,7 @@ jsPsych.plugins["two-step"] = (function() {
       },
       rocket_color_right: {
         type: jsPsych.plugins.parameterType.HTML_STRING,
-        pretty_name: 'Rocket color left',
+        pretty_name: 'Rocket color right',
         description: 'Color of right rocket.'
       },
       planet_color_left: {
@@ -91,13 +115,13 @@ jsPsych.plugins["two-step"] = (function() {
     new_html += '<div class="stars"></div>';
 
     // Draw left moon.
-    new_html += `<div class="moon" id="moon-L" side="left" color="${trial.planet_color_left}">`;
+    new_html += `<div class="moon" id="moon-L" side="left" stage="2" color="${trial.planet_color_left}">`;
     new_html += '<div class="shadow"></div>';
     new_html += '<div class="crater"></div>';
     new_html += '</div>';
 
-    // Draw left moon.
-    new_html += `<div class="moon" id="moon-R" side="right" color="${trial.planet_color_right}">`;
+    // Draw right moon.
+    new_html += `<div class="moon" id="moon-R" stage ="2" side="right" color="${trial.planet_color_right}">`;
     new_html += '<div class="shadow"></div>';
     new_html += '<div class="crater"></div>';
     new_html += '</div>';
@@ -133,6 +157,7 @@ jsPsych.plugins["two-step"] = (function() {
     new_html += '<div class="rocket-fire" id="fire-R"></div>';
     new_html += '</div></div>';
 
+    //TO-DO change the code here to switch the side.
     // Draw left alien.
     new_html += '<div class="alien" id="alien-L" stage="1" side="left">';
     new_html += `<img id="alien-L-img"></img>`;
@@ -146,6 +171,10 @@ jsPsych.plugins["two-step"] = (function() {
     // Draw diamonds.
     new_html += '<div class="diamond" id="diamond-L" stage="1" side="left"></div>';
     new_html += '<div class="diamond" id="diamond-R" stage="1" side="right"></div>';
+
+    // Draw rocks.
+    new_html += '<div class="rock" id="rock-L" stage="1" side="left"></div>';
+    new_html += '<div class="rock" id="rock-R" stage="1" side="right"></div>';
 
     // Close wrapper.
     new_html += '</div>';
@@ -166,6 +195,7 @@ jsPsych.plugins["two-step"] = (function() {
       stage_2_rt: null,
       stage_2_choice: null,
       state_2_outcome: null,
+      state_2_outcome_prob: null,
     }
 
     // function to handle responses by the subject
@@ -178,8 +208,11 @@ jsPsych.plugins["two-step"] = (function() {
       // Log responses.
       response.stage_1_key = info.key;
       response.stage_1_rt = info.rt;
+      // 1 if the left key is pressed
       if (response.stage_1_key == 37) {
         response.stage_1_choice = 1;
+
+      // 0 if the right key was pressed
       } else {
         response.stage_1_choice = 0;
       }
@@ -191,12 +224,14 @@ jsPsych.plugins["two-step"] = (function() {
       } else if ( response.stage_1_choice == 1 ) {
         display_element.querySelector('#rocket-L').setAttribute('stage', 'uncommon');
         display_element.querySelector('#fire-L').style['display'] = 'inherit';
+        // console.log('uncommon');
       } else if ( response.stage_1_choice == 0 && trial.common_right ) {
         display_element.querySelector('#rocket-R').setAttribute('stage', 'common');
         display_element.querySelector('#fire-R').style['display'] = 'inherit';
       } else {
         display_element.querySelector('#rocket-R').setAttribute('stage', 'uncommon');
         display_element.querySelector('#fire-R').style['display'] = 'inherit';
+        // console.log('uncommon');
       }
 
       // Pause for animation.
@@ -204,7 +239,15 @@ jsPsych.plugins["two-step"] = (function() {
 
     };
 
-    // function to handle responses by the subject
+    // index into the alien_types variable to determine the image shown.
+    // the correct switching of the sides for the aliens is determined when the trials are created in two-step-exeriment.js
+    function display_aliens(alien_index_left, alien_index_right, planet_color){
+
+      display_element.querySelector('.landscape-ground').setAttribute('color', planet_color);
+      display_element.querySelector('#alien-L-img').setAttribute('src', `../static/img/alien0${alien_index_left}-${planet_color}.png`);
+      display_element.querySelector('#alien-R-img').setAttribute('src', `../static/img/alien0${alien_index_right}-${planet_color}.png`);
+    }
+
     var stage_transition = function() {
 
       // Update screen.
@@ -220,37 +263,34 @@ jsPsych.plugins["two-step"] = (function() {
       display_element.querySelector('.landscape-ground').setAttribute('stage', '2');
 
       if ( response.stage_1_choice == 1 ) {
-
+        // common transition (left)
+        // display aliens 1 and 2
         if ( trial.common_left ) {
-          display_element.querySelector('.landscape-ground').setAttribute('color', trial.planet_color_left);
-          display_element.querySelector('#alien-L-img').setAttribute('src', `../static/img/alien01-${trial.planet_color_left}.png`);
-          display_element.querySelector('#alien-R-img').setAttribute('src', `../static/img/alien02-${trial.planet_color_left}.png`);
+          display_aliens(trial.alien_left_1, trial.alien_left_2, trial.planet_color_left);
+
+        // uncommon transition (display right)
         } else {
-          display_element.querySelector('.landscape-ground').setAttribute('color', trial.planet_color_right);
-          display_element.querySelector('#alien-L-img').setAttribute('src', `../static/img/alien01-${trial.planet_color_right}.png`);
-          display_element.querySelector('#alien-R-img').setAttribute('src', `../static/img/alien02-${trial.planet_color_right}.png`);
+          display_aliens(trial.alien_right_1, trial.alien_right_2, trial.planet_color_right);
         }
 
+        //display the color rocket they took chose (important if uncommon transition occured)
         display_element.querySelector('#rocket-L').setAttribute('stage', '2');
         display_element.querySelector('#fire-L').style['display'] = 'none';
         display_element.querySelector('#rocket-R').style['display'] = 'none';
 
       } else {
-
+        // common transition right
         if ( trial.common_right ) {
-          display_element.querySelector('.landscape-ground').setAttribute('color', trial.planet_color_right);
-          display_element.querySelector('#alien-L-img').setAttribute('src', `../static/img/alien01-${trial.planet_color_right}.png`);
-          display_element.querySelector('#alien-R-img').setAttribute('src', `../static/img/alien02-${trial.planet_color_right}.png`);
-        } else {
-          display_element.querySelector('.landscape-ground').setAttribute('color', trial.planet_color_left);
-          display_element.querySelector('#alien-L-img').setAttribute('src', `../static/img/alien01-${trial.planet_color_left}.png`);
-          display_element.querySelector('#alien-R-img').setAttribute('src', `../static/img/alien02-${trial.planet_color_left}.png`);
-        }
+          display_aliens(trial.alien_right_1, trial.alien_right_2, trial.planet_color_right);
 
+        // uncommon right transition (display left)
+        } else {
+          display_aliens(trial.alien_left_1, trial.alien_left_2, trial.planet_color_left);
+        }
+        // display the rocket they took
         display_element.querySelector('#rocket-R').setAttribute('stage', '2');
         display_element.querySelector('#fire-R').style['display'] = 'none';
         display_element.querySelector('#rocket-L').style['display'] = 'none';
-
       }
 
       // Initialize second stage keyboardListener.
@@ -277,14 +317,61 @@ jsPsych.plugins["two-step"] = (function() {
       // Log responses.
       response.stage_2_key = info.key;
       response.stage_2_rt = info.rt;
-      if (response.stage_2_key == 37) {
-        response.stage_2_choice = 1;
-      } else {
-        response.stage_2_choice = 0;
+
+      // Retrieve and save the alein that they chose.
+      // if they chose left and traveled left
+      if (response.stage_1_choice==1 & trial.common_left){
+        // chose the left alien
+        if (response.stage_2_key == 37){
+          response.stage_2_choice = trial.alien_left_1;
+        }
+        //chose the right alien
+        else{
+          response.stage_2_choice = trial.alien_left_2;
+        }
+      }
+      // they chose left but traveled right
+      if (response.stage_1_choice==1 & !trial.common_left){
+        if (response.stage_2_key == 37){
+          response.stage_2_choice = trial.alien_right_1;
+        }
+        //chose the right alien
+        else{
+          response.stage_2_choice = trial.alien_right_2;
+        }
+      }
+      // they chose right and traveled right
+      if (response.stage_1_choice==0 & trial.common_right){
+        if (response.stage_2_key == 37){
+          response.stage_2_choice = trial.alien_right_1;
+        }
+        //chose the right alien
+        else{
+          response.stage_2_choice = trial.alien_right_2;
+        }
+      }
+      // they chose right but traveled left
+      if (response.stage_1_choice==0 & !trial.common_right){
+        if (response.stage_2_key == 37){
+          response.stage_2_choice = trial.alien_left_1;
+        }
+        //chose the right alien
+        else{
+          response.stage_2_choice = trial.alien_left_2;
+        }
       }
 
-      // Determine outcome.
-      const ix = response.stage_1_choice * 2 + response.stage_2_choice;
+      // Map the alien type to its drift type. This was randomly determined by
+      // shuffling the drift_type array, which is an array of indices.
+      // These indices are then used to index the column of drifting probabilites.
+      // The index for an alien type stays the same throughout the task, so
+      // the probablilites are pulled from the same col throughout the task.
+      var drift_index = response.stage_2_choice-1
+      const ix = drift_types[drift_index];
+
+      // Determine the outcome
+      trial.state_2_outcome_prob = trial.outcome_probs[ix];
+
       if ( Math.random() < trial.outcome_probs[ix] ) {
         response.stage_2_outcome = 1;
       } else {
@@ -292,12 +379,15 @@ jsPsych.plugins["two-step"] = (function() {
       }
 
       // Update screen.
-      if ( response.stage_2_choice == 1 ) {
+      if ( response.stage_2_choice == trial.alien_left_1 | response.stage_2_choice == trial.alien_right_1) {
 
         display_element.querySelector('#alien-L').setAttribute('status', 'chosen');
 
         if ( response.stage_2_outcome == 1 ) {
           display_element.querySelector('#diamond-L').setAttribute('status', 'chosen');
+        }
+        else {
+          display_element.querySelector('#rock-L').setAttribute('status', 'chosen');
         }
 
       } else {
@@ -306,6 +396,9 @@ jsPsych.plugins["two-step"] = (function() {
 
         if ( response.stage_2_outcome == 1 ) {
           display_element.querySelector('#diamond-R').setAttribute('status', 'chosen');
+        }
+        else {
+          display_element.querySelector('#rock-R').setAttribute('status', 'chosen');
         }
 
       }
@@ -341,6 +434,8 @@ jsPsych.plugins["two-step"] = (function() {
         stage_2_rt: response.stage_2_rt,
         stage_2_choice: response.stage_2_choice,
         stage_2_outcome: response.stage_2_outcome,
+        state_2_outcome_prob: trial.state_2_outcome_prob,
+        alien_drift_choice: drift_types[response.stage_2_choice-1],
       };
 
       // clear the display

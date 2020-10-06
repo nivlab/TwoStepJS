@@ -1,23 +1,30 @@
-TwoStepJS
-=========
+.. image:: https://img.shields.io/badge/python-3.6+-blue.svg
+        :target: https://www.python.org/downloads/release/python-360/
 
-A jsPsych port of the `child-friendly <doi.org/10.1177/0956797616639301>`_ two-step task.
+.. image:: https://img.shields.io/github/license/mashape/apistatus.svg
+        :target: https://github.com/nivlab/NivLink/blob/master/LICENSE
 
-Configuration
-^^^^^^^^^^^^^
+NivTurk
+=======
 
-This version of the two-step task uses a "space trading" cover story: Participants visit two different planets and trade with aliens found there. The colors and positions of the rocket ships, planets, and aliens are configurable according to the experimenter's preferences. For example, the rocket ships and planets can be made to have the same colors (e.g. red & blue), which can make explicit to the participant the first-stage transition matrix (e.g. common: blue-to-blue, uncommon: blue-to-red). Moreover, the rocket ship and alien positions can be changed across trials to discourage choice autocorrelation or side biases.
+Niv lab tools for securely serving and storing data from online computational psychiatry experiments.
 
-To note, the experiment in this repository currently matches the rocket ship and planet colors. Moreover, rocket ship and alien positions are static across trials.
+Quickstart
+^^^^^^^^^^
 
-Serving Experiments
-^^^^^^^^^^^^^^^^^^^
+The following is the minimal set of commands needed to get started with NivTurk (assuming you have already a virtual machine with python 3.6+ installed):
 
-For details on how to serve the experiment using NivTurk, please see the `Wiki <https://github.com/nivlab/nivturk/wiki>`_.
+.. code-block:: bash
 
-Attributions
-^^^^^^^^^^^^
-- Rocket ship originally designed by `Eva Lettner <codepen.io/eva_trostlos/pen/akQoLN>`_.
-- Night sky originally designed by `John Balladares <codepen.io/jaballadares/pen/YVKozy>`_.
-- Moons originally designed by `Mathew Gitchell <codepen.io/mgitch/pen/pECcD>`_.
-- Rocket tower and animation inspired by `Kelly Kovalcik <codepen.io/kellykov/pen/kXmgyq>`_.
+    ssh <user-name>@<server-name>.princeton.edu
+    git clone https://github.com/nivlab/nivturk.git
+    cd nivturk
+    pip install -r requirements.txt
+    gunicorn -b 0.0.0.0:9000 -w 4 app:app
+    
+
+Wiki
+^^^^
+
+For details on how to serve your experiment, how the code is organized, and how data is stored, please see the
+`Wiki <https://github.com/nivlab/nivturk/wiki>`_.
