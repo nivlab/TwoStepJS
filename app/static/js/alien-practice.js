@@ -70,12 +70,12 @@ jsPsych.plugins["alien-practice"] = (function() {
     new_html += '</div>';
 
     // Draw left alien.
-    new_html += '<div class="alien" id="alien-L" stage="2" side="left">';
+    new_html += '<div span class="alien practice-alien" id="alien-L" stage="2" side="left">';
     new_html += `<img id="alien-L-img" src="../static/img/alien01-${trial.planet_color_left}.png"></img>`;
     new_html += '</div>';
 
     // Draw right alien.
-    new_html += '<div class="alien" id="alien-R" stage="2" side="right">';
+    new_html += '<div class="alien practice-alien" id="alien-R" stage="2" side="right">';
     new_html += `<img id="alien-R-img" src="../static/img/alien02-${trial.planet_color_left}.png"></img>`;
     new_html += '</div>';
 

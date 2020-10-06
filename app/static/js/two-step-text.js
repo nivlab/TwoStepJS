@@ -1,6 +1,14 @@
 
 //colors must be determined to display in the text
 
+var continue_label = 'Continue';
+
+var next_label = 'Next'; // Next button label
+
+var previous_label = 'Prev'; // Previous button label
+
+var subject_id_prompt = 'Please enter the subject ID';
+
 var instructions_01 = ['Welcome to the Treasure Trade Game! Here, you will be looking for treasure in outer space. You can use the arrow keys to navigate.'];
 
 var instructions_02 = ['In this game, you can look for treasure on two different planets.'];
@@ -27,7 +35,7 @@ var instructions_12 = ['<b>Hint 1:</b> Aliens slowly change how often they give 
 
 var instructions_13 = ['<b>Hint 2:</b> If one alien is not giving much treasure, that does not mean the other one is giving more treasure. There are no patterns like giving you treasure every other time.'];
 
-// instruction14 moved to two-step-experiment script for colo customization.
+var instructions_14 = ['Before you can ask an alien for some treasure, you will first need to travel to their planet! There are two rocketships and two planets. Each rocketship goes to one planet most of the time. You will need to learn from your travels which planet is the preferred destination of each rocketship.'];
 
 var instructions_15 = ['Each rocketship has a planet it goes to most of the time. Sometimes (though rarely), it will fly to the other planet.'];
 
@@ -40,6 +48,7 @@ var instructions_18 = ['Great job! This game can be hard, so you will need to co
 // var temp = ['שלום'];
 
 // Comprehension check questions
+correct_text = "Correct!";
 
 // Question 1
 var comp_q1 = '<p class="jspsych-survey-multi-choice-text survey-multi-choice">True or False: The aliens slowly change how often they give you treasure over time. If an alien is likely to give you treasure right now, it might become less likely to give you treasure in the future. If an alien is unlikely to give you treasure right now, it might become more likely to give you treasure in the future. While the aliens change how likely they are to give you treasure, they will only change slowly. </p>';
