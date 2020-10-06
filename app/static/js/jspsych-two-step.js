@@ -361,7 +361,6 @@ jsPsych.plugins["two-step"] = (function() {
         }
       }
 
-
       // Map the alien type to its drift type. This was randomly determined by
       // shuffling the drift_type array, which is an array of indices.
       // These indices are then used to index the column of drifting probabilites.
@@ -371,8 +370,8 @@ jsPsych.plugins["two-step"] = (function() {
       const ix = drift_types[drift_index];
 
       // Determine the outcome
-
       trial.state_2_outcome_prob = trial.outcome_probs[ix];
+
       if ( Math.random() < trial.outcome_probs[ix] ) {
         response.stage_2_outcome = 1;
       } else {
