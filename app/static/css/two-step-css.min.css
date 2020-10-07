@@ -492,6 +492,7 @@
 }
 .alien[stage='2'][side='center'] {
   left: calc(50%);
+  filter: grayscale(100%);
 }
 .alien[status='chosen'] {
   animation: shake 0.5s linear;
