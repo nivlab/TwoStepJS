@@ -101,7 +101,7 @@ var TWO_STEP_PRACTICE         = [];
 // 200 trials total
 // 20 practice
 // 180 in blocks
-for (var i=0; i<200; i++) {//i<200
+for (var i=0; i<115; i++) {//i<200
 var trial = null;
   // Define trials.
   // flip left and right rocket colors
