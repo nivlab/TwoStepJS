@@ -58,7 +58,7 @@ def index():
     workerId     = timestamp_str,#gen_code(5),
     assignmentId = timestamp_str,                         # MTurk metadata
     hitId        = timestamp_str,                         # MTurk metadata
-    subId        = timestamp_str,                        # NivTurk metadata
+    subId        = gen_code(24),                        # NivTurk metadata
     a            = request.args.get('a'),               # TurkPrime metadata
     tp_a         = request.args.get('tp_a'),            # TurkPrime metadata
     b            = request.args.get('b'),               # TurkPrime metadata
@@ -73,7 +73,7 @@ def index():
 
     ## GEHA: trying to put subId in the filename
     session['subId'] = info['subId']
-    print(info['subId'])
+    print(session['subId'])
 
     ## Case 1: mobile user.
     if info['platform'] in ['android','iphone','ipad','wii']:
