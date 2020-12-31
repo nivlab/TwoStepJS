@@ -411,7 +411,7 @@ var COMPREHENSION_01 = {
   correct_text: correct_text
 }
 
-var comp_q2 = `<p class="jspsych-survey-multi-choice-text survey-multi-choice">True or False: A rocketship will always go to the same planet.</p>`;
+var comp_q2 = `<p class="jspsych-survey-multi-choice-text survey-multi-choice">נכון או לא נכון: חללית תמיד תנחת על אותו כוכב.</p>`;
 var COMPREHENSION_02 = {
   type: 'two-step-comprehension',
   prompt: comp_q2,
